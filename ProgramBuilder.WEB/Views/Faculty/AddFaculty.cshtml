@@ -1,0 +1,137 @@
+﻿@model ProgramBuilder.DA.Faculty
+
+@{
+    ViewBag.Title = "Tạo mới khoa";
+    ViewBag.Header = "Tạo mới khoa";
+}
+
+@{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem
+         {
+             Text = "1",
+             Value = "1",
+                          Selected = true
+         });
+    listItems.Add(new SelectListItem
+         {
+             Text = "2",
+             Value = "2",
+
+         });
+    listItems.Add(new SelectListItem
+         {
+             Text = "3",
+             Value = "3"
+         });
+    listItems.Add(new SelectListItem
+    {
+        Text = "4",
+        Value = "4"
+    });
+    listItems.Add(new SelectListItem
+        {
+            Text = "5",
+            Value = "5"
+        });
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.VietNameseName, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.VietNameseName, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.VietNameseName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.EnglishName, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.EnglishName, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.EnglishName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.PhoneNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TrainingTime, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @*@Html.EditorFor(model => model.TrainingTime, new { @class = "form-control input-md" })*@
+        @Html.DropDownListFor(model => model.TrainingTime, listItems, new { @class = "modify form-control" })
+        @Html.ValidationMessageFor(model => model.TrainingTime)
+    </div>
+    
+    
+    <div class="editor-label">
+        Chọn cơ sở:
+    </div>
+    <div class="editor-field">
+        @*@Html.EditorFor(model => model.TrainingTime, new { @class = "form-control input-md" })*@
+        @Html.DropDownList("FacilityID", (SelectList)ViewBag.facilities, new { @class = "modify form-control" })      
+    </div>
+    
+    <div class="editor-label">
+        Chọn văn phòng khoa:
+    </div>
+    <div class="editor-field">
+        @*@Html.EditorFor(model => model.TrainingTime, new { @class = "form-control input-md" })*@
+  
+        <select id="ClassroomID" name="ClassroomID" class="modify form-control"></select> 
+        @Html.ValidationMessageFor(model => model.ClassroomID)  
+    </div>
+
+    <br />
+    <p>
+        <input class="btn btn-primary" type="submit" value="Tạo" />
+    </p>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+
+    var facilityID = $("#FacilityID option:first").val();
+    GetClassroomsByFacilityID02(facilityID);
+
+    $("#FacilityID").bind("change", function () {
+        var FacilityID = $("#FacilityID option:selected").val();
+        GetClassroomsByFacilityID02(FacilityID);
+    });
+
+    function GetClassroomsByFacilityID02(ID) {
+        $.ajax({
+            type: 'GET',
+            url: '/Classroom/GetClassroomsByFacilityID02/' + ID,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Classrooms) {
+                $('#ClassroomID').empty();
+                $.each(Classrooms, function (i, Classroom) {
+
+                    $('#ClassroomID').append(new Option(Classroom.Name, Classroom.ID));
+                });
+            },
+            error: function () {
+                alert('Có 1 số vấn đề về kết nối với server, vui lòng chọn lại khoa hoặc reload lại page.');
+            }
+        });
+    }
+</script>

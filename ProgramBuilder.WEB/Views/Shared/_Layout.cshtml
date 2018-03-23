@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon"/>
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/select2.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+
+
+    <link href="~/Content/themes/base/all.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<script src="/Design/vendor/jquery/jquery.min.js"></script>*@
+    <!-- Bootstrap Core JavaScript -->
+    <!-- Bootstrap Core CSS -->
+    @* <link href="/Design/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />*@
+    <!-- MetisMenu CSS -->
+    <link href="/Design/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/Design/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="/Design/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="~/Scripts/select2.js"></script>
+
+</head>
+
+
+@{
+    string Fullname = (User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).FullName;
+    int AccountID = (User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).ID;
+}
+
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">VĂN LANG UNIVERSITY</a>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> @Fullname <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="/Account/AccountDetail/@AccountID"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li>
+                            <a href="/Account/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+
+                        @{
+
+
+                            if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Admin"))
+                            {
+                                <li>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i> ACCOUNT<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="/Account/AccountsList">DANH SÁCH ACCOUNT</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Account/AddAccount">TẠO MỚI ACCOUNT</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-second-level -->
+                                </li>
+                            }
+                            else
+                                if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Editor"))
+                                {
+                                    <li>
+                                        <a href="#"><i class="glyphicon glyphicon-asterisk"></i> KHOA<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level">
+                                            <li>
+                                                <a href="/Faculty/FaculitiesList">DANH SÁCH KHOA</a>
+                                            </li>
+                                            <li>
+                                                <a href="/Faculty/AddFaculty">TẠO MỚI KHOA</a>
+                                            </li>
+                                        </ul>
+                                        <!-- /.nav-second-level -->
+                                    </li> //khoa
+
+                                    <li>
+                                        <a href="#"><i class="glyphicon glyphicon-book"></i> MÔN HỌC<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level">
+                                            <li>
+                                                <a href="/Subject/SubjectsList">DANH SÁCH MÔN HỌC</a>
+                                            </li>
+                                            <li>
+                                                <a href="/Subject/AddSubject">TẠO MỚI MÔN HỌC</a>
+                                            </li>
+                                        </ul>
+                                        <!-- /.nav-second-level -->
+                                    </li> //mon học
+
+
+                                    <li>
+                                        <a href="#"><i class="glyphicon glyphicon-th-large"></i> CHƯƠNG TRÌNH ĐÀO TẠO<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-second-level">
+                                            <li>
+                                                <a href="/Program/ProgramsList">DANH SÁCH CTĐT</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="/Program/AddProgram">TẠO MỚI CTĐT</a>
+                                            </li>
+
+
+                                        </ul>
+                                        <!-- /.nav-second-level -->
+                                    </li>   // ctđt
+                                }
+                                else
+                                    if (((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Deanery") && (User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Lecturer")) || (User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Deanery"))
+                                    {
+                                        <li>
+                                            <a href="#"><i class="glyphicon glyphicon-asterisk"></i> KHOA<span class="fa arrow"></span></a>
+                                            <ul class="nav nav-second-level">
+                                                <li>
+                                                    <a href="/Faculty/FaculitiesList">DANH SÁCH KHOA</a>
+                                                </li>
+
+                                            </ul>
+                                            <!-- /.nav-second-level -->
+                                        </li> //khoa
+
+                                        <li>
+                                            <a href="#"><i class="glyphicon glyphicon-book"></i> MÔN HỌC<span class="fa arrow"></span></a>
+                                            <ul class="nav nav-second-level">
+                                                <li>
+                                                    <a href="/Subject/SubjectsList">DANH SÁCH MÔN HỌC</a>
+                                                </li>
+
+                                            </ul>
+                                            <!-- /.nav-second-level -->
+                                        </li> //mon học
+
+
+                                        <li>
+                                            <a href="#"><i class="glyphicon glyphicon-th-large"></i> CHƯƠNG TRÌNH ĐÀO TẠO<span class="fa arrow"></span></a>
+                                            <ul class="nav nav-second-level">
+                                                <li>
+                                                    <a href="/Program/ProgramsList">DANH SÁCH CTĐT</a>
+                                                </li>
+                                            </ul>
+                                            <!-- /.nav-second-level -->
+                                        </li>   // ctđt
+                                        <li>
+                                            <a href="#"><i class="glyphicon glyphicon-th-large"></i> ĐỀ CƯƠNG CHI TIẾT<span class="fa arrow"></span></a>
+                                            <ul class="nav nav-second-level">
+                                                <li>
+                                                    <a href="/Syllabus/SyllabusesList">DANH SÁCH ĐCCT</a>
+                                                </li>
+                                                <li>
+                                                    <a href="/Syllabus/AddSyllabus">TẠO MỚI ĐCCT</a>
+                                                </li>
+                                            </ul>
+                                            <!-- /.nav-second-level -->
+                                        </li>
+                                    }
+                                    else
+                                        if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Lecturer"))
+                                        {
+                                            <li>
+                                                <a href="#"><i class="glyphicon glyphicon-th-large"></i> CHƯƠNG TRÌNH ĐÀO TẠO<span class="fa arrow"></span></a>
+                                                <ul class="nav nav-second-level">
+                                                    <li>
+                                                        <a href="/Program/ProgramsList">DANH SÁCH CTĐT</a>
+                                                    </li>
+                                                </ul>
+                                                <!-- /.nav-second-level -->
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="glyphicon glyphicon-th"></i> ĐỀ CƯƠNG CHI TIẾT<span class="fa arrow"></span></a>
+                                                <ul class="nav nav-second-level">
+                                                    <li>
+                                                        <a href="/Syllabus/SyllabusesList">DANH SÁCH ĐCCT</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/Syllabus/AddSyllabus">TẠO MỚI ĐCCT</a>
+                                                    </li>
+                                                </ul>
+                                                <!-- /.nav-second-level -->
+                                            </li> //dcct
+                                        }
+
+
+
+                        }
+
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">@ViewBag.Header</h2>
+                    </div>
+                    <div class="col-lg-8">
+                        @RenderBody()
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+            </div>
+            <!-- /.row -->
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+    <script src="/Scripts/bootstrap.js"></script>
+
+
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    @*<script src="~/Scripts/jquery-3.1.1.min.js"></script>*@
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    @*<link href="~/Content/themes/base/all.css" rel="stylesheet" />*@
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Design/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/Design/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/Design/dist/js/sb-admin-2.js"></script>
+
+
+</body>
+</html>

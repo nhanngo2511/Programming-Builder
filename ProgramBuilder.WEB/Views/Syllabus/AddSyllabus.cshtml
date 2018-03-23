@@ -1,0 +1,462 @@
+﻿@model ProgramBuilder.DA.Syllabus
+
+@{
+    ViewBag.Title = "Thêm đề cương chi tiết";
+    ViewBag.Header = "Thêm đề cương chi tiết";
+}
+
+@{
+    int AccountID = (User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).ID;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "myform" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.SubjectID)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.SubjectID, (SelectList)ViewBag.Subjects, "--- Chọn môn học ---", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SubjectID)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.VietnameseName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.VietnameseName, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.VietnameseName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.EnglishName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.EnglishName, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.EnglishName)
+    </div>
+    <br />
+    <p class="Explain"></p>
+    <div class="Knowledge">
+        <table style="width: 698px; border-collapse: collapse">
+            <tbody>
+                <tr>
+                    <td style="width: 220px; border: 1px solid; text-align: center; " colspan="2">Kiến thức giáo dục đại cương <input type="checkbox" class="mycheck"></td>
+                    <td style="width: 463px; border: 1px solid; text-align: center;" colspan="4">Kiến thức giáo dục chuyên nghiệp <input type="checkbox" class="mycheck"></td>
+                </tr>
+                <tr>
+                    <td style="width: 108.7px; border: 1px solid; text-align: center;" rowspan="2">Bắt buộc <input type="checkbox" class="mycheck"></td>
+                    <td style="width: 111.3px; border: 1px solid; text-align: center;" rowspan="2">Tự chọn <input type="checkbox" class="mycheck"></td>
+                    <td style="width: 242px; border: 1px solid; text-align: center;" colspan="2">Kiến thức cơ sở ngành <input type="checkbox" class="mycheck"></td>
+                    <td style="width: 221px; border: 1px solid; text-align: center;" colspan="2">Kiến thức chuyên ngành <input type="checkbox" class="mycheck"></td>
+                </tr>
+                <tr>
+                    <td style="width: 139px; border: 1px solid; text-align: center;">Bắt buộc <input type="checkbox" class="mycheck"></td>
+                    <td style="width: 103px; border: 1px solid; text-align: center;">Tự chọn <input type="checkbox" class="mycheck"></td>
+                    <td style="width: 115px; border: 1px solid; text-align: center;">Bắt buộc <input type="checkbox" class="mycheck"></td>
+                    <td style="width: 106px; border: 1px solid; text-align: center;">Tự chọn <input type="checkbox" class="mycheck"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="editor-field">
+        @Html.HiddenFor(model => model.KnowldgeType)     
+    </div>
+     <div class="editor-field">
+         @Html.ValidationMessageFor(model => model.KnowldgeType)
+    </div>
+    <div class="AccountDetail">
+        <p class="AccountName"><strong>- Giảng viên phụ trách môn học: </strong><span></span></p>
+        <p class="AccountAddress"><strong>- Địa chỉ cơ quan: </strong><span></span></p>
+        <p class="AccountPhonenumber"><strong>- Điện thoại liên hệ: </strong><span></span></p>
+        <p class="AccountEmail"><strong>- Email: </strong><span></span></p>
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ClassroomID)
+    </div>
+
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.ClassroomID, (SelectList)ViewBag.Classrooms, new { @class = "modify form-control" })
+    </div>
+
+
+
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LearningTimeDetail)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.LearningTimeDetail, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.LearningTimeDetail)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LecturerContact)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.LecturerContact)
+        @Html.ValidationMessageFor(model => model.LecturerContact)
+    </div>
+    <br />
+    <div class="SubjectDetail">
+        <p class="SubjecCreditNumber"><strong>- Số đơn vị học trình: </strong><span></span></p>
+        <p class="SubjectLearningLevel"><strong>- Trình độ: </strong><span></span></p>
+        <p class="SubjectLearningTime"><strong>- Phân bổ thời gian: </strong><span></span></p>
+        <p class="RelateSubject"><strong>- Môn học tiên quyết: </strong><span></span></p>
+        <p class="SubjectPurpose"><strong>- Mục tiêu và kết quả dự kiến của môn học: </strong><span></span></p>
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OutcomeContent)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.OutcomeContent, new { placeholder = "a. Giải thích đúng vai trò của pháp luật trong quản lý nhà nước... \nb. Trình bày được những cột mốc phát triển... \nc. Nêu đúng những văn bản pháp luật... \nd. ... \ne. ... \n. \n. \n." })
+        @Html.ValidationMessageFor(model => model.OutcomeContent)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OutcomeMaxtrixMapping)
+    </div>
+    <br />
+    <button type="button" class="btn btn-info btngetprogramtrainingpurpose">Xem chuẩn đầu ra CTĐT</button>
+    <div id="ProgramTrainingPurposePopup" style="display:none"></div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.OutcomeMaxtrixMapping)
+        @Html.ValidationMessageFor(model => model.OutcomeMaxtrixMapping)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ShortDescription)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.ShortDescription, new { placeholder = "Nội dung chính của môn học bao gồm: \n - Chương 1: ...\n - Chương 2: ..." })
+        @Html.ValidationMessageFor(model => model.ShortDescription)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OutcomeMappingDescription)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.OutcomeMappingDescription)
+        @Html.ValidationMessageFor(model => model.OutcomeMappingDescription)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DocumentReference)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.DocumentReference)
+        @Html.ValidationMessageFor(model => model.DocumentReference)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LearningOutcomeEvaluate)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.LearningOutcomeEvaluate, new { placeholder = "- Yêu cầu chung: \n\n - Xếp loại đánh giá" })
+        @Html.ValidationMessageFor(model => model.LearningOutcomeEvaluate)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Requirement)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Requirement, new { placeholder = "- Về thái độ: \n - Về nội dung: \n - Thái độ học tập" })
+        @Html.ValidationMessageFor(model => model.Requirement)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Planning)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Planning)
+        @Html.ValidationMessageFor(model => model.Planning)
+    </div>
+
+    @Html.Hidden("CreatedAccountID", AccountID);
+
+    <br />
+    
+    <p>
+        <input class="btn btn-success btn-block btnadd"  type="submit" value="Tạo mới" name="action:Add" />
+        <input class="btn btn-primary btn-block btnreview" type="submit" value="Review" name="action:Review" />
+    </p>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+<script src="~/Scripts/tinymce/tinymce.js"></script>
+<script src="~/Scripts/tinymce/inittinymce.js"></script>
+
+
+
+<script>
+
+    
+
+    $(document).ready(function () {
+
+
+        tinymce.init({
+            selector: '#OutcomeContent',
+            height: 200,
+            width: 660,
+            theme: 'modern',
+            resize: 'both',
+            plugins: [
+              'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+              'searchreplace wordcount visualblocks visualchars code fullscreen',
+              'insertdatetime media nonbreaking save table contextmenu directionality',
+              'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc',
+              'placeholder',
+              'autoresize'
+            ],
+            toolbar1: 'undo redo | insert | styleselect | bold italic | underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'print preview media | forecolor backcolor emoticons | codesample | sizeselect | fontselect |  fontsizeselect',
+            image_advtab: true,
+            templates: [
+              { title: 'Test template 1', content: 'Test 1' },
+              { title: 'Test template 2', content: 'Test 2' }
+            ],
+            content_css: [
+              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+              '//www.tinymce.com/css/codepen.min.css'
+            ],
+            init_instance_callback: function (editor) {
+                editor.on('change', function (e) {
+                    OutcomeContent = "";
+                    OutcomeContent = tinyMCE.get('OutcomeContent').getContent();
+                    if (tinyMCE.get('OutcomeContent').getContent().search('<p>') == -1) {
+                        SyllabusOutcomeLength = tinyMCE.get('OutcomeContent').getContent().split("<li>").length;
+                    }
+                    else {
+                        SyllabusOutcomeLength = tinyMCE.get('OutcomeContent').getContent().split("<p>").length;
+                    }
+
+                    SyllabusOutcomeLength = SyllabusOutcomeLength - 1;
+
+                    RenderTableHTML(SyllabusOutcomeLength, ProgramPurposeLength);
+
+                    RenderTableHTML02(SyllabusOutcomeLength);
+
+                });
+            }
+        });
+
+        $('.btnreview').click(function () {
+            $('#myform').attr("target", "_blank");
+        });
+
+        $('.btnadd').click(function () {
+            $('#myform').removeAttr("target");
+        });
+
+        GetCurrentAccount();
+
+        $('.mycheck').change(function () {
+
+            if (this.checked) {
+                $(this).attr('checked', true);
+            } else {
+                $(this).attr('checked', false);
+            }
+
+            $('#KnowldgeType').val('');
+            $('#KnowldgeType').val($('.Knowledge').html());
+        });
+
+        $("#SubjectID").bind("change", function () {
+            var subID = $("#SubjectID").val();
+
+            if (subID != "") {
+                $('#VietnameseName').val($("#SubjectID option:selected").text());
+                GetSubjectID(subID);
+                GetLengthAndContentProgramPurposeByID(subID);
+            } else {
+                $('#VietnameseName').val("");
+            }
+        });
+
+        $('.btngetprogramtrainingpurpose').bind("click", function () {
+            $('#ProgramTrainingPurposePopup').show();
+            $('#ProgramTrainingPurposePopup').dialog({
+                closeText: 'X',
+                title: 'Chuẩn đầu ra của chương trình đào tạo',
+                autoOpen: false,
+                width: 1100,
+                height: 500,
+                resizable: true,
+                modal: true
+            });
+
+            $('#ProgramTrainingPurposePopup').dialog('open');
+        });
+
+
+        function GetLengthAndContentProgramPurposeByID(ID) {
+            if (ID != null) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Program/GetLengthProgramPurposeBySubjectID/' + ID,
+                    contentType: "aplication/json; charset=utf8",
+                    dataType: 'json',
+                    success: function (Result) {
+
+                        ProgramPurposeLength = Result.Length;
+                        $('#ProgramTrainingPurposePopup').empty();
+                        $('#ProgramTrainingPurposePopup').append(Result.Content);
+                    },
+                    error: function () {
+                        alert('Error');
+                    }
+                });
+            }
+        }
+
+        function GetSubjectID(ID) {
+            if (ID != null) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Subject/GetSubjectID/' + ID,
+                    contentType: "aplication/json; charset=utf8",
+                    dataType: 'json',
+                    success: function (Result) {
+                        var explaintext = 'Môn học: <strong>' + Result.SubjectName + '</strong>, thuộc dạng kiến thức <strong>' + Result.SubjectType + ' </strong> - <strong>' + Result.SubjectType1 + ' (Nếu có)</strong> - <strong>' + Result.SubjectForm + '</strong>';
+                        $('.Explain').empty();
+                        $('.Explain').html(explaintext);
+
+                        $('.SubjecCreditNumber span').empty();
+                        $('.SubjectLearningLevel span').empty();
+                        $('.SubjectLearningTime span').empty();
+                        $('.RelateSubject span').empty();
+                        $('.SubjectPurpose span').empty();
+
+                        $('.SubjecCreditNumber span').append(Result.CreditNumber);
+                        $('.SubjectLearningLevel span').append(Result.LearningLevel);
+                        $('.SubjectLearningTime span').append(Result.TheoryNumber + ' tiết lý thuyết + ' + Result.PracticeNumber + ' tiết thực hành');
+
+                        var txtRelateSubjects = '';
+                        $.each(Result.RelateSubjects, function (i, RelateSubject) {
+
+                            txtRelateSubjects += RelateSubject + " ,";
+                        });
+
+                        $('.RelateSubject span').append(txtRelateSubjects.substring(0, txtRelateSubjects.length - 1));
+
+                        $('.SubjectPurpose span').append(Result.Purpose);
+                    },
+                    error: function () {
+                        alert('Có 1 số vấn đề về kết nối với server, vui lòng chọn lại khoa hoặc reload lại page.');
+                    }
+                });
+            }
+        }
+
+        function GetCurrentAccount() {
+            $.ajax({
+                type: 'GET',
+                url: '/Account/GetCurrentAccount/',
+                contentType: "aplication/json; charset=utf8",
+                dataType: 'json',
+                success: function (Result) {
+                    $('.AccountName span').append(Result.Name);
+                    $('.AccountAddress span').append(Result.Address);
+                    $('.AccountPhonenumber span').append(Result.PhoneNumber);
+                    $('.AccountEmail span').append(Result.Email);
+                },
+                error: function () {
+                    alert('Có 1 số vấn đề về kết nối với server, vui lòng chọn lại khoa hoặc reload lại page.');
+                }
+            });
+        }
+
+        function RenderTableHTML(rows, columns) {
+
+            var alphabets = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"];
+
+            var html = '<table>';
+            for (var i = 0; i <= columns; i++) {
+                html += '<tr>';
+                for (var j = 0; j <= rows; j++) {
+                    if (i == 0 && j != 0) {
+                        html += '<td style="width: 157.267px;">' + alphabets[j] + '</td>';
+                    } else {
+                        if (i != 0 && j == 0) {
+                            html += '<td style="width: 157.267px;">' + i + '</td>';
+                        }
+                        else {
+                            html += '<td style="width: 157.267px;"></td>';
+                        }
+                    }
+                }
+                html += '</td>';
+            }
+
+            tinyMCE.get('OutcomeMaxtrixMapping').setContent('');
+            tinyMCE.get('OutcomeMaxtrixMapping').setContent(html);
+
+
+
+        }
+
+        function RenderTableHTML02(rows) {
+
+            var alphabets = [" ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"];
+
+            var html = "<table>";
+            html += "<tbody><tr><td rowspan='2' style='width: 157.267px;'>Chuẩn đầu ra của m&ocirc;n học</td>";
+            html += "<td rowspan='2' style='width: 157.267px;'>Phương ph&aacute;p dạy v&agrave; học</td>";
+            html += "<td colspan='2' style='width: 157.267px;'>Phương ph&aacute;p kiểm tra, đ&aacute;nh gi&aacute; sinh vi&ecirc;n</td>";
+            html += "<td rowspan='2' style='width: 157.267px;'>Chuẩn đầu ra CTĐT</td></tr><tr>";
+            html += "<td style='width: 157.267px;'>Phương ph&aacute;p</td>";
+            html += "<td style='width: 157.267px;'>Tỷ trọng (%)</td></tr>";
+
+            for (var i = 0; i < rows * 3; i++) {
+
+                if ((i % 3) == 0) {
+                    html += '<tr>';
+                    for (var j = 0; j < 5; j++) {
+                        if (j == 0) {
+                            html += '<td style="width: 157.267px;" rowspan="3">' + 'Chuẩn ' + alphabets[(i / 3) + 1] + '</td>';
+                        } else {
+                            if (j == 2) {
+                                html += '<td style="width: 157.268px;"></td>';
+                            }
+                            else {
+                                html += '<td style="width: 157.267px;" rowspan="3"></td>';
+                            }                           
+                        }
+                    }
+                    html += '</tr>';
+                } else {
+                    html += '<tr>';
+                    html += '<td style="width: 157.267px;"></td>';
+                    html += '</tr>';
+                }
+               
+            }
+
+            html += '<tr>';
+            html += '<td colspan="3">T&ocirc;ng cộng</td>';
+            html += '<td style="width: 157.267px;">100%</td>';
+            html += '<td style="width: 157.267px;"></td>';
+            html += '</tr>';
+
+            html += "</tbody></table><p>&nbsp;</p>";
+
+            tinyMCE.get('OutcomeMappingDescription').setContent('');
+            tinyMCE.get('OutcomeMappingDescription').setContent(html);
+        }
+
+    });
+
+</script>
+

@@ -1,0 +1,77 @@
+﻿@model ProgramBuilder.DA.Faculty
+
+@{
+    ViewBag.Title = "Thông tin chi tiết khoa";
+    ViewBag.Header = "Thông tin chi tiết khoa";
+}
+
+
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>Tên tiếng việt</th>
+                                    <th>Tên tiếng anh</th>
+                                    <th>SĐT khoa</th>
+                                    <th>Năm đào tạo</th>
+                                    <th>Văn phòng khoa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@Model.VietNameseName</td>
+                                    <td>@Model.EnglishName</td>
+                                    <td>@Model.PhoneNumber</td>
+                                    <td class ="text-center">@Model.TrainingTime</td>
+                                    <td>@(Model.Classroom.Facility.Name + " ("+ Model.Classroom.Name + ")")  </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <hr />
+                        <h4>Danh sách môn có trong khoa <span class="label label-success">@Model.Subjects.Count</span></h4>
+
+                        <table class="table table-striped" style="font-size:14.5px;">
+                            <thead>
+                                <tr>
+                                    <th>Mã môn học (mã học phần)</th>
+                                    <th>Tên môn học</th>
+                                    <th>Số tín chỉ</th>
+                                    <th>Số tiết lý thuyết</th>
+                                    <th>Số tiết thực hành</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Subjects.Count; i++)
+                                {
+                                    <tr>
+                                        <td><a href="/Subject/SubjectDetail/@Model.Subjects.ToList()[i].ID">@Model.Subjects.ToList()[i].PartialCode</a></td>
+                                        <td>@Model.Subjects.ToList()[i].Name</td>
+                                        <td class="text-center">@Model.Subjects.ToList()[i].CreditNumber</td>
+                                        <td class="text-center">@Model.Subjects.ToList()[i].TheoryNumber</td>
+                                        <td class="text-center">@Model.Subjects.ToList()[i].PracticeNumber</td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    @if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Editor"))
+    {
+        <a href="/Faculty/EditFaculty/@Model.ID" class="btn btn-primary">Chỉnh sửa thông tin khoa</a>
+    }
+</div>
+

@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProgramBuilderModelStoreContainer" CdmEntityContainer="ProgramBuilderEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.Account">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Degree" ColumnName="Degree" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Classrooms">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.Classroom">
+        <MappingFragment StoreEntitySet="Classrooms">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsOfficeFacility" ColumnName="IsOfficeFacility" />
+          <ScalarProperty Name="FacilityID" ColumnName="FacilityID" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facilities">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.Facility">
+        <MappingFragment StoreEntitySet="Facilities">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Faculties">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.Faculty">
+        <MappingFragment StoreEntitySet="Faculties">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VietNameseName" ColumnName="VietNameseName" />
+          <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="ClassroomID" ColumnName="ClassroomID" />
+          <ScalarProperty Name="TrainingTime" ColumnName="TrainingTime" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.Program">
+        <MappingFragment StoreEntitySet="Programs">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TrainingLevel" ColumnName="TrainingLevel" />
+          <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+          <ScalarProperty Name="EducationType" ColumnName="EducationType" />
+          <ScalarProperty Name="TrainingPurpose" ColumnName="TrainingPurpose" />
+          <ScalarProperty Name="EntranceStudent" ColumnName="EntranceStudent" />
+          <ScalarProperty Name="TrainingTimeDetail" ColumnName="TrainingTimeDetail" />
+          <ScalarProperty Name="KnowledgeTotal" ColumnName="KnowledgeTotal" />
+          <ScalarProperty Name="GraduateCondition" ColumnName="GraduateCondition" />
+          <ScalarProperty Name="PointLadder" ColumnName="PointLadder" />
+          <ScalarProperty Name="TrainingSupport" ColumnName="TrainingSupport" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="TrainingPlan" ColumnName="TrainingPlan" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ShortContentDescription" ColumnName="ShortContentDescription" />
+          <ScalarProperty Name="LecturerList" ColumnName="LecturerList" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.Subject">
+        <MappingFragment StoreEntitySet="Subjects">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PartialCode" ColumnName="PartialCode" />
+          <ScalarProperty Name="CreditNumber" ColumnName="CreditNumber" />
+          <ScalarProperty Name="TheoryNumber" ColumnName="TheoryNumber" />
+          <ScalarProperty Name="PracticeNumber" ColumnName="PracticeNumber" />
+          <ScalarProperty Name="LearningLevel" ColumnName="LearningLevel" />
+          <ScalarProperty Name="SemesterNumber" ColumnName="SemesterNumber" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="FacultyID" ColumnName="FacultyID" />
+          <ScalarProperty Name="SubjectTypeID" ColumnName="SubjectTypeID" />
+          <ScalarProperty Name="Form" ColumnName="Form" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectsAccounts">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.SubjectsAccount">
+        <MappingFragment StoreEntitySet="SubjectsAccounts">
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="IsSyllabusEditor" ColumnName="IsSyllabusEditor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectTypes">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.SubjectType">
+        <MappingFragment StoreEntitySet="SubjectTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SubSubjectTypeID" ColumnName="SubSubjectTypeID" />
+          <ScalarProperty Name="SubTwoSubjectTypeID" ColumnName="SubTwoSubjectTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Syllabuses">
+      <EntityTypeMapping TypeName="ProgramBuilderModel.Syllabus">
+        <MappingFragment StoreEntitySet="Syllabuses">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VietnameseName" ColumnName="VietnameseName" />
+          <ScalarProperty Name="EnglishName" ColumnName="EnglishName" />
+          <ScalarProperty Name="KnowldgeType" ColumnName="KnowldgeType" />
+          <ScalarProperty Name="LearningTimeDetail" ColumnName="LearningTimeDetail" />
+          <ScalarProperty Name="Requirement" ColumnName="Requirement" />
+          <ScalarProperty Name="Planning" ColumnName="Planning" />
+          <ScalarProperty Name="DocumentReference" ColumnName="DocumentReference" />
+          <ScalarProperty Name="LearningOutcomeEvaluate" ColumnName="LearningOutcomeEvaluate" />
+          <ScalarProperty Name="LecturerContact" ColumnName="LecturerContact" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="OutcomeContent" ColumnName="OutcomeContent" />
+          <ScalarProperty Name="OutcomeMaxtrixMapping" ColumnName="OutcomeMaxtrixMapping" />
+          <ScalarProperty Name="OutcomeMappingDescription" ColumnName="OutcomeMappingDescription" />
+          <ScalarProperty Name="CreatedAccountID" ColumnName="CreatedAccountID" />
+          <ScalarProperty Name="ClassroomID" ColumnName="ClassroomID" />
+          <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+          <ScalarProperty Name="CreationTime" ColumnName="CreationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AccountRoles" TypeName="ProgramBuilderModel.AccountRoles" StoreEntitySet="AccountRoles">
+      <EndProperty Name="Accounts">
+        <ScalarProperty Name="ID" ColumnName="AccountID" />
+      </EndProperty>
+      <EndProperty Name="Roles">
+        <ScalarProperty Name="ID" ColumnName="RoleID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ConditionRelateSubjects" TypeName="ProgramBuilderModel.ConditionRelateSubjects" StoreEntitySet="ConditionRelateSubjects">
+      <EndProperty Name="Subjects">
+        <ScalarProperty Name="ID" ColumnName="SubjectID" />
+      </EndProperty>
+      <EndProperty Name="Subjects1">
+        <ScalarProperty Name="ID" ColumnName="ConditionSubjectID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="GetProgramContentByFacultyID" FunctionName="ProgramBuilderModel.Store.GetProgramContentByFacultyID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProgramBuilderModel.GetProgramContentByFacultyID_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SubjectTypeName" ColumnName="SubjectTypeName" />
+          <ScalarProperty Name="SubjectsList" ColumnName="SubjectsList" />
+          <ScalarProperty Name="CreditNumberTotal" ColumnName="CreditNumberTotal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

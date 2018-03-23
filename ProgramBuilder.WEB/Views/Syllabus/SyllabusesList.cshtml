@@ -1,0 +1,63 @@
+﻿@model List<ProgramBuilder.DA.Syllabus>
+
+@{
+    ViewBag.Title = "Danh sách đề cương chi tiết";
+    ViewBag.Header = "Danh sách đề cương chi tiết";
+}
+
+<style>
+    .table-condensed {
+        font-size: 14.5px;
+    }
+</style>
+
+@{
+    int CurrentAccountID = (User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).ID;
+}
+
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-lg-10">
+            <br />
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th><span style="font-size:15px"><strong>Tên ĐCCT</strong></span></th>
+                                    <th><span style="font-size:15px"><strong>Người lập</strong></span></th>
+                                    <th class="text-center"><span><strong>Số lượng GV dạy</strong></span></th>
+                                    <th><span><strong>Thời gian cập nhật</strong></span></th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    for (int i = 0; i < Model.Count; i++)
+                                    {
+                                        <tr>
+                                            <td><a target="_blank" href="/Syllabus/ReviewSyllabus/@Model[i].ID">@Model[i].VietnameseName</a></td>
+                                            <td><a href="/Account/AccountDetail/@Model[i].Subject.SubjectsAccounts.Where(x =>x.IsSyllabusEditor == true).First().Account.ID">@Model[i].Subject.SubjectsAccounts.Where(x => x.IsSyllabusEditor == true).First().Account.FullName</a></td>
+                                            <td class ="text-center">@Model[i].Subject.SubjectsAccounts.ToList().Count</td>
+                                            <td>@Model[i].CreationTime</td>
+                                            <td width="220px">
+                                                <a target="_blank" href="/Syllabus/ReviewSyllabus/@Model[i].ID" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-eye-open"></span> Xem</a>
+                                                <a href="/Syllabus/ExportToWord/@Model[i].ID" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-download-alt"></span> Download</a>
+                                                @if (Model[i].CreatedAccountID == CurrentAccountID)
+                                                {
+                                                    <a target="_blank" href="/Syllabus/EditSyllabus/@Model[i].ID" class="btn btn-xs btn-info"><span class="glyphicon glyphicon-edit"></span> Sửa</a>
+                                                }
+                                             </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

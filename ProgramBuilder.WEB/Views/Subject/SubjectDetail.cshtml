@@ -1,0 +1,157 @@
+﻿@model ProgramBuilder.DA.Subject
+
+@{
+    ViewBag.Title = "Chi tiết môn học";
+    ViewBag.Header = "Chi tiết môn học";
+}
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Mã học phần:</strong></td>
+                                    <td>@Model.PartialCode</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Tên môn học:</strong></td>
+                                    <td>@Model.Name</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Số tín chỉ:</strong></td>
+                                    <td>@(Model.CreditNumber + " (TC)")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Số tiết lý thuyết:</strong></td>
+                                    <td>@(Model.TheoryNumber + " tiết")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Số tiết thực hành:</strong></td>
+                                    <td>@(Model.PracticeNumber + " tiết")</td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Trình độ đào tạo:</strong></td>
+                                    <td>@Model.LearningLevel</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Được dạy ở học kỳ:</strong></td>
+                                    <td>@Model.SemesterNumber</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Thuộc khoa:</strong></td>
+                                    @if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Deanery") || (User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Editor"))
+                                    {
+                                        <td><a href="/Faculty/FacultyDetail/@Model.FacultyID">@(Model.Faculty.VietNameseName + " (" + Model.Faculty.EnglishName + ")")</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td>@(Model.Faculty.VietNameseName + " (" + Model.Faculty.EnglishName + ")")</td>
+                                    }
+
+
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Môn học tiên quyết:</strong></td>
+                                    <td>
+                                        @for (int i = 0; i < Model.Subjects1.Count; i++)
+                                        {
+
+                                            <a href="/Subject/SubjectDetail/@Model.Subjects1.ToList()[i].ID">
+                                                @Model.Subjects1.ToList()[i].Name
+                                            </a>
+                                            <br />
+
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Loại môn học:</strong></td>
+                                    <td>@(Model.SubjectType.Name + " - ") @Html.DisplayFor(x => x.Form)  @("  Bắt buộc / tùy chọn")</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>GV đảm nhận <span style="font-size:14px">CHÍNH</span>:</strong></td>
+                                    @if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Admin"))
+                                    {
+                                        <td><a href="/Account/AccountDetail/@Model.SubjectsAccounts.Where(x=>x.IsSyllabusEditor == true).First().Account.ID">@Model.SubjectsAccounts.Where(x => x.IsSyllabusEditor == true).First().Account.FullName</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td>@Model.SubjectsAccounts.Where(x => x.IsSyllabusEditor == true).First().Account.FullName</td>
+                                    }
+
+                                </tr>
+                                <tr>
+                                    <td><strong>Những GV đảm nhận dạy:</strong></td>
+                                    <td>
+
+
+                                        @for (int i = 0; i < Model.SubjectsAccounts.Where(x => x.IsSyllabusEditor == false).ToList().Count; i++)
+                                        {
+
+                                            if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Admin"))
+                                            {
+                                                <a href="/Account/AccountDetail/@Model.SubjectsAccounts.Where(x=>x.IsSyllabusEditor == false).ToList()[i].Account.ID">
+                                                    @Model.SubjectsAccounts.Where(x => x.IsSyllabusEditor == false).ToList()[i].Account.FullName
+                                                </a>
+                                            <br />
+                                            }
+                                            else
+                                            {
+
+                                                @Model.SubjectsAccounts.Where(x => x.IsSyllabusEditor == false).ToList()[i].Account.FullName
+                                            <br />
+                                            }
+
+
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Danh sách ĐCCT đã soạn :</strong></td>
+                                    <td>
+                                        @for (int i = 0; i < Model.Syllabuses.Count; i++)
+                                        {
+
+                                            <a target="_blank" href="/Syllabus/ReviewSyllabus/@Model.Syllabuses.ToList()[i].ID">
+                                                @(Model.Syllabuses.ToList()[i].VietnameseName)
+                                            </a>
+
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mô tả môn học:</strong></td>
+                                    <td>@Model.Description</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mục đích môn học:</strong></td>
+                                    <td>@Model.Purpose</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Editor"))
+    {
+        <a href="/Subject/EditSubject/@Model.ID" class="btn btn-primary">Chỉnh sửa thông tin môn học</a>
+    }
+      
+    <br />
+</div>

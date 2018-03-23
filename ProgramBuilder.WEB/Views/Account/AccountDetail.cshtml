@@ -1,0 +1,124 @@
+﻿@model ProgramBuilder.DA.Account
+
+@{
+    ViewBag.Title = "Thông tin chi tiết Account";
+    ViewBag.Header = "Thông tin chi tiết Account";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 ">
+
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://bootdey.com/img/Content/user_1.jpg" class="img-circle img-responsive"> </div>
+
+                        <div class=" col-md-9">
+                            <table class="table table-user-information table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td>UserName</td>
+                                        <td>@Model.UserName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tên đầy đủ:</td>
+                                        <td>@Model.FullName</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Vai trò:</td>
+                                        <td>
+                                            @for (int i = 0; i < Model.Roles.ToList().Count; i++)
+                                            {
+                                                <span class="label label-success">@Model.Roles.ToList()[i].Name</span>
+                                            }
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>Trình độ</td>
+                                        <td>@Model.Degree</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số điện thoại</td>
+                                        <td>@Model.PhoneNumber</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><a href="#">@Model.Email</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Thời gian tạo</td>
+                                        <td>@Model.CreationTime</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Thuộc khoa</td>
+                                        <td>
+                                            @if (Model.FacultyID != null)
+                                            {
+                                                if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Deanery"))
+                                                {
+                                                    <a href="/Faculty/FacultyDetail/@Model.FacultyID">@(Model.Faculty.VietNameseName + " (" + Model.Faculty.EnglishName + ")") </a>
+                                                }
+                                                else
+                                                {
+                                                    @(Model.Faculty.VietNameseName + " (" + Model.Faculty.EnglishName + ")")
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                <span>Không có</span>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dạy những môn</td>
+                                        <td>
+
+                                            @if ((User as ProgramBuilder.WEB.Principal.AuthorizePrincipal).IsInRole("Deanery"))
+                                            {
+                                                for (int i = 0; i < Model.SubjectsAccounts.ToList().Count; i++)
+                                                {
+
+                                                    <a href="/Subject/SubjectDetail/@Model.SubjectsAccounts.ToList()[i].SubjectID">@Model.SubjectsAccounts.ToList()[i].Subject.Name</a><br />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                for (int i = 0; i < Model.SubjectsAccounts.ToList().Count; i++)
+                                                {
+
+                                                 @Model.SubjectsAccounts.ToList()[i].Subject.Name
+                                                <br />
+                                                }
+                                            }
+
+
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            @if (Model.FacultyID != null)
+                            {
+                                <a href="/Account/EditAccount/@Model.ID" class="btn btn-primary">Chỉnh sửa thông tin</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

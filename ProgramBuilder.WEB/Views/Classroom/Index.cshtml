@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProgramBuilder.DA.Classroom>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add Classroom", "AddClassroom")
+</p>
+@using (Html.BeginForm("Index", "Classroom", FormMethod.Get))
+{
+
+    <div class="control-group">
+        <b><label class="control-label">Chọn khoa: </label> </b>
+        @Html.DropDownList("FacilityID", (SelectList)ViewBag.Facilities, new { @class = "modify form-control" })
+        <input type="submit" value="Tìm kiếm" />
+    </div>
+}
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsOfficeFacility)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FacilityID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsOfficeFacility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacilityID)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { ID = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { ID = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

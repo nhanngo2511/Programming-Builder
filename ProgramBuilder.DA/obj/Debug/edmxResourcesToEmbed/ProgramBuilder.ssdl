@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProgramBuilderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountRoles">
+    <Key>
+      <PropertyRef Name="AccountID" />
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Degree" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="FacultyID" Type="int" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Classrooms">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsOfficeFacility" Type="bit" Nullable="false" />
+    <Property Name="FacilityID" Type="int" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConditionRelateSubjects">
+    <Key>
+      <PropertyRef Name="SubjectID" />
+      <PropertyRef Name="ConditionSubjectID" />
+    </Key>
+    <Property Name="SubjectID" Type="int" Nullable="false" />
+    <Property Name="ConditionSubjectID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Facilities">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Faculties">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VietNameseName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EnglishName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="ClassroomID" Type="int" Nullable="false" />
+    <Property Name="TrainingTime" Type="int" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Programs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrainingLevel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BranchName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EducationType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrainingPurpose" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EntranceStudent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrainingTimeDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KnowledgeTotal" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GraduateCondition" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PointLadder" Type="int" Nullable="false" />
+    <Property Name="TrainingSupport" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrainingPlan" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="ShortContentDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LecturerList" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FacultyID" Type="int" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PartialCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreditNumber" Type="int" Nullable="false" />
+    <Property Name="TheoryNumber" Type="int" Nullable="false" />
+    <Property Name="PracticeNumber" Type="int" Nullable="false" />
+    <Property Name="LearningLevel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SemesterNumber" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Purpose" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FacultyID" Type="int" />
+    <Property Name="SubjectTypeID" Type="int" Nullable="false" />
+    <Property Name="Form" Type="bit" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectsAccounts">
+    <Key>
+      <PropertyRef Name="SubjectID" />
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="SubjectID" Type="int" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="IsSyllabusEditor" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectTypes">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubSubjectTypeID" Type="int" />
+    <Property Name="SubTwoSubjectTypeID" Type="int" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Syllabuses">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VietnameseName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EnglishName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="KnowldgeType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LearningTimeDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Requirement" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Planning" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DocumentReference" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LearningOutcomeEvaluate" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LecturerContact" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ShortDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OutcomeContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OutcomeMaxtrixMapping" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OutcomeMappingDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedAccountID" Type="int" Nullable="false" />
+    <Property Name="ClassroomID" Type="int" Nullable="false" />
+    <Property Name="SubjectID" Type="int" Nullable="false" />
+    <Property Name="CreationTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_AccountRoles_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="AccountRoles" Type="Self.AccountRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AccountRoles">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="AccountRoles" Type="Self.AccountRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AccountRoles">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_Faculties">
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Classrooms_Facilities">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="Classrooms" Type="Self.Classrooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Classrooms">
+        <PropertyRef Name="FacilityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConditionRelateSubjects_Subjects">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="ConditionRelateSubjects" Type="Self.ConditionRelateSubjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ConditionRelateSubjects">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConditionRelateSubjects_Subjects1">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="ConditionRelateSubjects" Type="Self.ConditionRelateSubjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ConditionRelateSubjects">
+        <PropertyRef Name="ConditionSubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Faculties_Classrooms">
+    <End Role="Classrooms" Type="Self.Classrooms" Multiplicity="1" />
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classrooms">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Faculties">
+        <PropertyRef Name="ClassroomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Programs_Faculties">
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="1" />
+    <End Role="Programs" Type="Self.Programs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Programs">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjects_Faculties">
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="0..1" />
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subjects">
+        <PropertyRef Name="FacultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjects_SubjectTypes">
+    <End Role="SubjectTypes" Type="Self.SubjectTypes" Multiplicity="1" />
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subjects">
+        <PropertyRef Name="SubjectTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectsAccounts_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="SubjectsAccounts" Type="Self.SubjectsAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubjectsAccounts">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectsAccounts_Subjects">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="SubjectsAccounts" Type="Self.SubjectsAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubjectsAccounts">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectTypes_SubjectTypes">
+    <End Role="SubjectTypes" Type="Self.SubjectTypes" Multiplicity="0..1" />
+    <End Role="SubjectTypes1" Type="Self.SubjectTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubjectTypes1">
+        <PropertyRef Name="SubSubjectTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectTypes_SubjectTypes1">
+    <End Role="SubjectTypes" Type="Self.SubjectTypes" Multiplicity="0..1" />
+    <End Role="SubjectTypes1" Type="Self.SubjectTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectTypes">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubjectTypes1">
+        <PropertyRef Name="SubTwoSubjectTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Syllabuses_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="Syllabuses" Type="Self.Syllabuses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Syllabuses">
+        <PropertyRef Name="CreatedAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Syllabuses_Classrooms">
+    <End Role="Classrooms" Type="Self.Classrooms" Multiplicity="1" />
+    <End Role="Syllabuses" Type="Self.Syllabuses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classrooms">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Syllabuses">
+        <PropertyRef Name="ClassroomID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Syllabuses_Subjects">
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="1" />
+    <End Role="Syllabuses" Type="Self.Syllabuses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Syllabuses">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetProgramContentByFacultyID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FacultyID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="ProgramBuilderModelStoreContainer">
+    <EntitySet Name="AccountRoles" EntityType="Self.AccountRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Classrooms" EntityType="Self.Classrooms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConditionRelateSubjects" EntityType="Self.ConditionRelateSubjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Facilities" EntityType="Self.Facilities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectsAccounts" EntityType="Self.SubjectsAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectTypes" EntityType="Self.SubjectTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Syllabuses" EntityType="Self.Syllabuses" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AccountRoles_Accounts" Association="Self.FK_AccountRoles_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="AccountRoles" EntitySet="AccountRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountRoles_Roles" Association="Self.FK_AccountRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="AccountRoles" EntitySet="AccountRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_Faculties" Association="Self.FK_Accounts_Faculties">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Classrooms_Facilities" Association="Self.FK_Classrooms_Facilities">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="Classrooms" EntitySet="Classrooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConditionRelateSubjects_Subjects" Association="Self.FK_ConditionRelateSubjects_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="ConditionRelateSubjects" EntitySet="ConditionRelateSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConditionRelateSubjects_Subjects1" Association="Self.FK_ConditionRelateSubjects_Subjects1">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="ConditionRelateSubjects" EntitySet="ConditionRelateSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Faculties_Classrooms" Association="Self.FK_Faculties_Classrooms">
+      <End Role="Classrooms" EntitySet="Classrooms" />
+      <End Role="Faculties" EntitySet="Faculties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Programs_Faculties" Association="Self.FK_Programs_Faculties">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Programs" EntitySet="Programs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjects_Faculties" Association="Self.FK_Subjects_Faculties">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjects_SubjectTypes" Association="Self.FK_Subjects_SubjectTypes">
+      <End Role="SubjectTypes" EntitySet="SubjectTypes" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectsAccounts_Accounts" Association="Self.FK_SubjectsAccounts_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="SubjectsAccounts" EntitySet="SubjectsAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectsAccounts_Subjects" Association="Self.FK_SubjectsAccounts_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="SubjectsAccounts" EntitySet="SubjectsAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectTypes_SubjectTypes" Association="Self.FK_SubjectTypes_SubjectTypes">
+      <End Role="SubjectTypes" EntitySet="SubjectTypes" />
+      <End Role="SubjectTypes1" EntitySet="SubjectTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectTypes_SubjectTypes1" Association="Self.FK_SubjectTypes_SubjectTypes1">
+      <End Role="SubjectTypes" EntitySet="SubjectTypes" />
+      <End Role="SubjectTypes1" EntitySet="SubjectTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Syllabuses_Accounts" Association="Self.FK_Syllabuses_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Syllabuses" EntitySet="Syllabuses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Syllabuses_Classrooms" Association="Self.FK_Syllabuses_Classrooms">
+      <End Role="Classrooms" EntitySet="Classrooms" />
+      <End Role="Syllabuses" EntitySet="Syllabuses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Syllabuses_Subjects" Association="Self.FK_Syllabuses_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Syllabuses" EntitySet="Syllabuses" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

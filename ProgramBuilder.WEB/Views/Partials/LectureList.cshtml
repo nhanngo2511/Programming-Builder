@@ -1,0 +1,63 @@
+﻿@model List<ProgramBuilder.DA.Account>
+
+@{
+    Layout = null;
+}
+
+<br />
+
+<table style="margin-left: 5.4pt; border-collapse: collapse; border: none;" width="500">
+    <tbody>
+        <tr>
+            <td style="width: .5in; border: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt;" width="48">
+                <p style="text-align: center;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">STT</span></strong></p>
+            </td>
+            <td style="width: 2.0in; border: solid windowtext 1.0pt; border-left: none; padding: 0in 5.4pt 0in 5.4pt;" width="192">
+                <p style="text-align: center;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Họ v&agrave; t&ecirc;n</span></strong></p>
+            </td>
+            <td style="width: 40.5pt; border: solid windowtext 1.0pt; border-left: none; padding: 0in 5.4pt 0in 5.4pt;" width="54">
+                <p style="text-align: center;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Năm sinh</span></strong></p>
+            </td>
+            <td style="width: 117.0pt; border: solid windowtext 1.0pt; border-left: none; padding: 0in 5.4pt 0in 5.4pt;" width="156">
+                <p style="text-align: center;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Văn bằng cao nhất, ng&agrave;nh đ&agrave;o tạo</span></strong></p>
+            </td>
+            <td style="width: 2.0in; border: solid windowtext 1.0pt; border-left: none; padding: 0in 5.4pt 0in 5.4pt;" width="156">
+                <p style="text-align: center;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">C&aacute;c m&ocirc;n sẽ đảm tr&aacute;ch (*)</span></strong></p>
+            </td>
+        </tr>
+
+
+        @{
+            for (int i = 0; i < Model.Count; i++)
+            {
+                int index = i + 1;
+                string teachSubject = "";
+                for (int j = 0; j < Model[i].SubjectsAccounts.ToList().Count; j++)
+                {
+                    teachSubject += ("," + Model[i].SubjectsAccounts.ToList()[j].Subject.Name);
+                }
+                
+                teachSubject = teachSubject.TrimStart(new[] {','});
+                <tr>
+            <td style="width: .5in; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt;" width="48">
+                <p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">@index</span></strong></p>
+            </td>
+            <td style="width: 2.0in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt;" width="192">
+                <p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">@Model[i].FullName</span></strong></p>
+            </td>
+            <td style="width: 40.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt;" width="54">
+                <p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+            </td>
+            <td style="width: 117.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt;" width="156">
+                <p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">@Model[i].Degree</span></strong></p>
+            </td>
+            <td style="width: 2.0in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt;" width="192">
+                <p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">@teachSubject</span></strong></p>
+            </td>
+        </tr>
+            }
+        }
+        
+        
+    </tbody>
+</table>

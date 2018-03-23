@@ -1,0 +1,162 @@
+﻿@model List<ProgramBuilder.WEB.Models.TrainingPlanViewModel>
+@{
+    ViewBag.Title = "TrainingPlan";
+    Layout = null;
+
+    int year = DateTime.Now.Year;
+}
+<br />
+<br />
+<br />
+<table style="width: 497.5pt; margin-left: 5.4pt; border-collapse: collapse;" width="663">
+    <tbody>
+
+        @{
+            for (int i = 0; i < Model.Count; i++)
+            {
+                int nextyear = year + 1;
+
+                <tr style="height: 16.5pt;">
+                    <td style="width: 355.5pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" colspan="3" width="474">
+                        <p><strong><span style="font-family: 'Times New Roman',serif; color: black;">HỌC KỲ @Model[i].SemesterNumber </span></strong></p>
+                    </td>
+                    <td style="width: 142.0pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" colspan="4" width="189">
+                        <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif; color: black;">HK @Model[i].SemesterNumber  @year - @nextyear</span></strong></p>
+                    </td>
+                </tr>
+                <tr style="height: 16.5pt;">
+                    <td style="width: 33.5pt; border-top: none; border-left: solid windowtext 1.0pt; border-bottom: solid black 1.0pt; border-right: none; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" rowspan="2" width="45">
+                        <p><strong><span style="font-family: 'Times New Roman',serif; color: blue;">STT</span></strong></p>
+                    </td>
+                    <td style="width: 48.15pt; border-top: none; border-left: solid windowtext 1.0pt; border-bottom: solid black 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" rowspan="2" width="64">
+                        <p><strong><span style="font-family: 'Times New Roman',serif; color: blue;">MMH</span></strong></p>
+                    </td>
+                    <td style="width: 273.85pt; border-top: none; border-left: none; border-bottom: solid black 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" rowspan="2" width="365">
+                        <p><strong><span style="font-family: 'Times New Roman',serif; color: blue;">T&Ecirc;N M&Ocirc;N HỌC</span></strong></p>
+                    </td>
+                    <td style="width: 31.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="42">
+                        <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif; color: blue;">SỐ</span></strong></p>
+                    </td>
+                    <td style="width: 110.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" colspan="3" width="147">
+                        <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif; color: blue;">SỐ TIẾT</span></strong></p>
+                    </td>
+                </tr>
+                <tr style="height: 16.5pt;">
+                    <td style="width: 31.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="42">
+                        <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif; color: blue;">TC</span></strong></p>
+                    </td>
+                    <td style="width: 31.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="42">
+                        <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif; color: blue;">TS</span></strong></p>
+                    </td>
+                    <td style="width: 31.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="42">
+                        <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif; color: blue;">LT</span></strong></p>
+                    </td>
+                    <td style="width: 47.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="63">
+                        <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif; color: blue;">TH/BT</span></strong></p>
+                    </td>
+                </tr>
+                for (int j = 0; j < Model[i].Subjects.Count; j++)
+                {
+                    int index = j + 1;
+                    
+                    int totalLessonBySubject = Model[i].Subjects[j].TheoryNumber + Model[i].Subjects[j].PracticeNumber;
+                    
+                    <tr style="height: 15.75pt;">
+                        <td style="width: 33.5pt; border-top: none; border-left: solid windowtext 1.0pt; border-bottom: solid windowtext 1.0pt; border-right: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" width="45">
+                            <p style="text-align: center;"><span style="font-family: 'Times New Roman',serif; color: black;">@index</span></p>
+                        </td>
+                        <td style="width: 48.15pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" width="64">
+                            <p><span style="font-family: 'Times New Roman',serif; color: black;">@Model[i].Subjects[j].PartialCode</span></p>
+                        </td>
+                        <td style="width: 273.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" width="365">
+                            <p><span style="font-family: 'Times New Roman',serif; color: black;">@Model[i].Subjects[j].Name</span></p>
+                        </td>
+                        <td style="width: 31.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" width="42">
+                            <p style="text-align: center;"><span style="font-family: 'Times New Roman',serif; color: black;">@Model[i].Subjects[j].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 31.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" width="42">
+                            <p style="text-align: right;"><span style="font-family: 'Times New Roman',serif; color: black;">@totalLessonBySubject</span></p>
+                        </td>
+                        <td style="width: 31.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" width="42">
+                            <p style="text-align: center;"><span style="font-family: 'Times New Roman',serif; color: black;">@Model[i].Subjects[j].TheoryNumber</span></p>
+                        </td>
+                        <td style="width: 47.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" width="63">
+                            <p style="text-align: center;"><span style="font-family: 'Times New Roman',serif; color: black;">@Model[i].Subjects[j].PracticeNumber</span></p>
+                        </td>
+                    </tr>
+
+                   
+                }
+                 <tr style="height: 16.5pt;">
+                        <td style="width: 33.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="45">&nbsp;</td>
+                        <td style="width: 48.15pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="64">&nbsp;</td>
+                        <td style="width: 273.85pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="365">
+                            <p><strong><span style="font-family: 'Times New Roman',serif; color: black;">TỔNG SỐ </span></strong></p>
+                        </td>
+                        <td style="width: 31.5pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="42">
+                            <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif; color: black;">@Model[i].CreditNumberTotal</span></strong></p>
+                        </td>
+                        <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="42">
+                            <p style="text-align: center;"><span style="font-family: 'Times New Roman',serif; color: red;">@Model[i].LessonNumber</span></p>
+                        </td>
+                        <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="42">&nbsp;</td>
+                        <td style="width: 47.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 16.5pt;" width="63">&nbsp;</td>
+                    </tr>
+            
+                if (Model[i].SemesterNumber % 2 != 0)
+                {
+                    year++;
+                    nextyear++;
+                }
+            }
+        }
+
+        <tr style="height: 15.0pt;">
+            <td style="width: 33.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="45">&nbsp;</td>
+            <td style="width: 48.15pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="64">&nbsp;</td>
+            <td style="width: 273.85pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="365">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 47.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="63">&nbsp;</td>
+        </tr>
+
+        <tr style="height: 15.0pt;">
+            <td style="width: 33.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="45">&nbsp;</td>
+            <td style="width: 48.15pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="64">&nbsp;</td>
+            <td style="width: 273.85pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="365">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 47.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="63">&nbsp;</td>
+        </tr>
+        <tr style="height: 15.0pt;">
+            <td style="width: 33.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="45">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif; color: black;">Ghi ch&uacute;</span></p>
+            </td>
+            <td style="width: 48.15pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="64">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif; color: black;">(1)</span></p>
+            </td>
+            <td style="width: 273.85pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="365">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif; color: black;">Chuy&ecirc;n đề: n&ecirc;n học ngay sau khi kết th&uacute;c học kỳ trước đ&oacute;</span></p>
+            </td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 47.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="63">&nbsp;</td>
+        </tr>
+        <tr style="height: 15.0pt;">
+            <td style="width: 33.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="45">&nbsp;</td>
+            <td style="width: 48.15pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="64">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif; color: black;">(2)</span></p>
+            </td>
+            <td style="width: 273.85pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="365">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif; color: black;">Capstone project được triển khai từ th&aacute;ng 09</span></p>
+            </td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 31.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="42">&nbsp;</td>
+            <td style="width: 47.5pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="63">&nbsp;</td>
+        </tr>
+    </tbody>
+</table>

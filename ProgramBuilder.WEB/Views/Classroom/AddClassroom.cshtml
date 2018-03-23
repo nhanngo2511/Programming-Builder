@@ -1,0 +1,50 @@
+﻿@model ProgramBuilder.DA.Classroom
+
+@{
+    ViewBag.Title = "AddClassroom";
+}
+
+<h2>AddClassroom</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Classroom</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsOfficeFacility)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsOfficeFacility)
+            @Html.ValidationMessageFor(model => model.IsOfficeFacility)
+        </div>
+
+        <div class="control-group">
+            <b><label class="control-label">Thuộc cơ sở: </label> </b>
+            @Html.DropDownListFor(x => x.FacilityID, (SelectList)ViewBag.Facilities, new { @class = "modify form-control" })
+        </div>
+
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

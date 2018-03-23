@@ -1,0 +1,467 @@
+﻿@model List<ProgramBuilder.WEB.Models.ProgramContentViewModel>
+
+@{
+    Layout = null;
+
+    int index = 1;
+    int TotalCredit = 0;
+    int TotoalCredit1 = 0;
+    int TotoalCredit2 = 0;
+    int TotoalCredit3 = 0;   
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        if (i != 0 || i != 1 || i != 3)
+        {
+            TotalCredit = TotalCredit + Model[i].CreditNumberTotal;
+        }
+        if (i == 2 || i == 3 || i == 4|| i == 5 || i == 10 || i == 11 || i == 12 || i == 13)
+        {
+            TotoalCredit1 = TotoalCredit1 + Model[i].CreditNumberTotal;
+        }
+        if (i == 6 || i == 7 || i == 8 || i == 9)
+        {
+            TotoalCredit2 = TotoalCredit2 + Model[i].CreditNumberTotal;
+	    }
+
+        if (i == 10 || i == 11)
+        {
+            TotoalCredit3 = TotoalCredit3 + Model[i].CreditNumberTotal;
+        }
+    }
+}
+<br />
+<br />
+<br />
+
+<table style="width: 508.75pt; margin-left: 5.15pt; border-collapse: collapse;" width="678">
+    <tbody>
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                <p><strong><span style="font-size: 14.0pt; font-family: 'Times New Roman',serif;">STT</span></strong></p>
+            </td>
+            <td style="width: 93.45pt; border: solid windowtext 1.0pt; border-left: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                <p><strong><span style="font-size: 14.0pt; font-family: 'Times New Roman',serif;">M&atilde; MH</span></strong></p>
+            </td>
+            <td style="width: 3.75in; border: solid windowtext 1.0pt; border-left: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                <p><strong><span style="font-size: 14.0pt; font-family: 'Times New Roman',serif;">M&ocirc;n học</span></strong></p>
+            </td>
+            <td style="width: 45.0pt; border: solid windowtext 1.0pt; border-left: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                <p><strong><span style="font-size: 14.0pt; font-family: 'Times New Roman',serif;">TC</span></strong></p>
+            </td>
+            <td style="width: 63.0pt; border: solid windowtext 1.0pt; border-left: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                <p><strong><span style="font-size: 14.0pt; font-family: 'Times New Roman',serif;">Học kỳ</span></strong></p>
+            </td>
+        </tr>
+        <tr style="height: 15.0pt;">
+            <td style="width: 400.75pt; border-top: none; border-left: solid windowtext 1.0pt; border-bottom: solid windowtext 1.0pt; border-right: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="3" width="534">
+                <p><strong><span style="font-family: 'Times New Roman',serif;">Kiến thức giáo dục đại cương</span></strong></p>
+            </td>
+            <td style="width: 1.5in; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><strong><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@TotoalCredit1</span></strong></p>
+            </td>
+        </tr>
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">L&yacute; luận Mac-Lenin v&agrave; Tư tưởng HCM</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[2].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+
+        @{
+            if (Model[2].Subjects.Count != null)
+            {
+                for (int i = 0; i < Model[2].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[2].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[2].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[2].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[2].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+
+        }
+
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Khoa học x&atilde; hội</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[12].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+        @{
+            if (Model[12].Subjects != null)
+            {
+                for (int i = 0; i < Model[12].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[12].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[12].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[12].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[12].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Ngoại ngữ </span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@TotoalCredit3</span></p>
+            </td>
+        </tr>
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+            </td>
+            <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Ngoại ngữ cơ bản</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[10].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+        @{
+            if (Model[10].Subjects != null)
+            {
+                for (int i = 0; i < Model[10].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[10].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[10].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[10].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[10].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+            </td>
+            <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Ngoại ngữ chuy&ecirc;n ng&agrave;nh</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[11].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+        @{
+            if (Model[11].Subjects != null)
+            {
+                for (int i = 0; i < Model[11].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[11].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[11].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[11].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[11].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">To&aacute;n - Tin Học - Khoa học Tự nhi&ecirc;n - C&ocirc;ng Nghệ - M&ocirc;i Trường</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[4].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+        @{
+            if (Model[4].Subjects != null)
+            {
+                for (int i = 0; i < Model[4].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[4].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[4].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[4].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[4].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Gi&aacute;o dục thể chất</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[5].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+
+        @{
+            if (Model[5].Subjects != null)
+            {
+                for (int i = 0; i < Model[5].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[5].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[5].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[5].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[5].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+
+
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Giáo dục quốc phòng - An ninh</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[13].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+        @{
+            if (Model[13].Subjects != null)
+            {
+                for (int i = 0; i < Model[13].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[13].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[13].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[13].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[13].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+        <tr style="height: 15.0pt;">
+            <td style="width: 400.75pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="3" width="534">
+                <p><strong><span style="font-family: 'Times New Roman',serif;">Kiến thức gi&aacute;o dục chuy&ecirc;n nghiệp</span></strong></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><strong><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@TotoalCredit2</span></strong></p>
+            </td>
+        </tr>
+        <tr style="height: 15.75pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" width="50">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+            </td>
+            <td style="width: 363.45pt; border: none; border-bottom: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Kiến thức cơ sở ng&agrave;nh</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: solid windowtext 1.0pt; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[6].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+        @{
+            if (Model[6].Subjects != null)
+            {
+                for (int i = 0; i < Model[6].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[6].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[6].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[6].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[6].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Kiến thức ng&agrave;nh</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[7].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+        @{
+            if (Model[7].Subjects != null)
+            {
+                for (int i = 0; i < Model[7].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[7].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[7].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[7].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[7].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">Thực tập tốt nghiệp v&agrave; l&agrave;m kho&aacute; luận</span></p>
+            </td>
+            <td style="width: 1.5in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid black 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[9].CreditNumberTotal</span></p>
+            </td>
+        </tr>
+        @{
+            if (Model[9].Subjects != null)
+            {
+                for (int i = 0; i < Model[9].Subjects.Count; i++)
+                {
+                    <tr style="height: 15.0pt;">
+                        <td style="width: 37.3pt; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">
+                            <p style="text-align: center;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@index</span></p>
+                        </td>
+                        <td style="width: 93.45pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: white; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="125">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[9].Subjects[i].PartialCode</span></p>
+                        </td>
+                        <td style="width: 3.75in; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="360">
+                            <p><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[9].Subjects[i].Name</span></p>
+                        </td>
+                        <td style="width: 45.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="60">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[9].Subjects[i].CreditNumber</span></p>
+                        </td>
+                        <td style="width: 63.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="84">
+                            <p style="text-align: right;"><span style="font-size: 11.0pt; font-family: 'Times New Roman',serif;">@Model[9].Subjects[i].SemesterNumber</span></p>
+                        </td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+        <tr style="height: 15.0pt;">
+            <td style="width: 37.3pt; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" width="50">&nbsp;</td>
+            <td style="width: 363.45pt; border: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="485">
+                <p style="text-align: center;"><strong><span style="font-family: 'Times New Roman',serif;">Total</span></strong></p>
+            </td>
+            <td style="width: 1.5in; border: none; padding: 0in 5.4pt 0in 5.4pt; height: 15.0pt;" colspan="2" width="144">
+                <p><strong><span style="font-family: 'Times New Roman',serif;">@TotalCredit</span></strong></p>
+            </td>
+        </tr>
+    </tbody>
+</table>

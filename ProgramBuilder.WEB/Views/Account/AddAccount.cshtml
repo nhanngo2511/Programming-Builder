@@ -1,0 +1,126 @@
+﻿@model ProgramBuilder.DA.Account
+
+@{
+    ViewBag.Title = "Tạo mới Account";
+    ViewBag.Header = "Tạo mới Account (Giảng viên)";
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+    @Html.Hidden("IsExist", false, new { @class = "isExistHiddent" })
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.UserName, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.UserName)
+        @Html.ValidationMessage("IsExist")
+        <strong><span class="validation-message" style="color:red"></span></strong>
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Password, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.FullName, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.FullName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Degree, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Degree, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.Degree)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label " })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.PhoneNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <br />
+    <div class="control-group">
+        <b><label class="control-label">Vai trò: </label> </b>
+        @Html.ListBox("RoleIDs", (SelectList)ViewBag.Roles, new { @class = "modify form-control roles-multiple-select" })
+        @Html.ValidationMessage("RoleIDs")
+    </div>
+    <br />
+    <div class="control-group">
+        <b><label class="control-label">Thuộc khoa: </label> </b>
+        @Html.DropDownList("FacultyID", (SelectList)ViewBag.Faculties, new { @class = "modify form-control" })
+    </div>
+    <br />
+
+    <p>
+        <input class="btn btn-primary" type="submit" value="Tạo tài khoản" />
+    </p>
+
+}
+
+
+<script>
+
+
+    $('#RoleIDs').select2({
+        placeholder: "Chọn vai trò cho hệ thống",
+        maximumSelectionSize: 10,
+        width: 350
+    });
+
+
+    $('#UserName').bind("change", function () {
+
+        var username = $('#UserName').val();
+        IsExistAccount(username);
+
+    });
+
+
+    function IsExistAccount(username) {
+        $.ajax({
+            type: 'GET',
+            url: '/Account/IsExistAccount?username=' + username,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Result) {
+
+                $('.isExistHiddent').val(Result.IsExist);
+
+                $('.validation-message').empty();
+                $('.validation-message').append(Result.Message);
+
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+</script>

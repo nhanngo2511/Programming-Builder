@@ -1,0 +1,131 @@
+﻿@model ProgramBuilder.DA.Syllabus
+@{
+
+    Layout = "~/Views/Shared/_LayoutWord.cshtml";
+    ViewBag.Title = Model.VietnameseName;
+}
+
+@{
+    string StrRelateSubject = "";
+    for (int i = 0; i < Model.Subject.Subjects1.Count; i++)
+    {
+        StrRelateSubject += Model.Subject.Subjects1.ToList()[i].Name + ", ";
+    }
+    if (!String.IsNullOrEmpty(StrRelateSubject))
+    {
+        StrRelateSubject = StrRelateSubject.Substring(0, StrRelateSubject.Length - 2);
+    }
+    
+}
+<div style="text-align:center;">
+    <p style="tab-stops: center 81.0pt 351.0pt;"><span style="line-height: 107%; font-family: 'times new roman', times, serif;"> BỘ GI&Aacute;O DỤC V&Agrave; Đ&Agrave;O TẠO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CỘNG H&Ograve;A X&Atilde; HỘI CHỦ NGHĨA VIỆT NAM<br /> <strong> TRƯỜNG ĐẠI HỌC VĂN LANG</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Độc lập &ndash; Tự do &ndash; Hạnh ph&uacute;c</span></p>
+    <span style="font-size: 12pt; line-height: 107%; font-family: 'times new roman', times, serif;">CHƯƠNG TR&Igrave;NH TR&Igrave;NH ĐỘ ĐẠI HỌC<br /> NG&Agrave;NH Đ&Agrave;O TẠO: @Model.Subject.Faculty.VietNameseName</span>
+
+
+    <p><strong><span style="font-size: 14.0pt; font-family: 'Times New Roman',serif;">ĐỀ CƯƠNG CHI TIẾT HỌC PHẦN</span></strong></p>
+</div>
+    <ol start="1">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">T&ecirc;n học phần: @Model.VietnameseName</span></strong></li>
+    </ol>
+    <p style="margin-left: 12.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">T&ecirc;n tiếng Anh: @Model.EnglishName</span></strong></p>
+
+    <p style="margin-left: 12.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">M&atilde; học phần: @Model.Subject.PartialCode</span></strong></p>
+
+    <p style="margin-left: 12.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">M&ocirc;n học thuộc khối kiến thức:</span></strong></p>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.KnowldgeType))
+
+    <ol start="2">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Giảng vi&ecirc;n giảng dạy: </span></strong></li>
+    </ol>
+    <ul>
+        <li style="margin-left: 19.3pt; text-indent: -6.7pt; tab-stops: 19.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Giảng vi&ecirc;n phụ tr&aacute;ch m&ocirc;n học:@Model.Account.Degree  </span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"> @Model.Account.FullName</span></li>
+    </ul>
+
+    <ul>
+        <li style="margin-left: 19.3pt; text-indent: -6.7pt; tab-stops: 19.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Địa chỉ cơ quan</span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">: @(Model.Subject.Faculty.Classroom.Facility.Address + " (" + Model.Subject.Faculty.Classroom.Name + ")")</span></li>
+    </ul>
+
+    <ul>
+        <li style="margin-left: 19.3pt; text-indent: -6.7pt; tab-stops: 19.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Điện thoại li&ecirc;n hệ: </span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">@(Model.Subject.Faculty.PhoneNumber + " hoặc " + Model.Account.PhoneNumber)</span></li>
+    </ul>
+
+    <ul>
+        <li style="margin-left: 19.3pt; text-indent: -6.7pt; tab-stops: 19.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Email: </span></strong><em><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">@Model.Account.Email</span></em></li>
+    </ul>
+
+    <ul>
+        <li style="margin-left: 20.3pt; text-indent: -7.7pt; tab-stops: 20.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Thời gian học: </span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">@Model.LearningTimeDetail</span></li>
+    </ul>
+
+    <ul>
+        <li style="margin-left: 21.3pt; text-indent: -8.35pt; tab-stops: 21.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Địa điểm học: </span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">@("tại phòng " + Model.Classroom.Name + ", " + Model.Classroom.Facility.Name + " (" + Model.Classroom.Facility.Address + ")")</span></li>
+    </ul>
+
+    <ul>
+        <li style="margin-left: 19.3pt; text-indent: -7.4pt; tab-stops: 19.3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">C&aacute;ch li&ecirc;n lạc với giảng vi&ecirc;n</span></strong></li>
+    </ul>
+
+    <p style="margin-left: 20.3pt; text-align: justify; line-height: 105%;"><span style="font-size: 12.0pt; line-height: 105%; font-family: 'Times New Roman',serif;">@Html.Raw(HttpUtility.HtmlDecode(Model.LecturerContact))</span></p>
+
+    <ol start="3">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Số đơn vị học tr&igrave;nh: </span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">@Model.Subject.CreditNumber</span></li>
+    </ol>
+    <ol start="4">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Tr&igrave;nh độ: </span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">@Model.Subject.LearningLevel</span></li>
+    </ol>
+    <ol start="5">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Ph&acirc;n bổ thời gian:</span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">@(Model.Subject.TheoryNumber + " tiết lý thuyết + " + Model.Subject.PracticeNumber + " tiết thực hành")</span></li>
+    </ol>
+    <ol start="6">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Học phần ti&ecirc;n quyết:</span></strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">@StrRelateSubject</span></li>
+    </ol>
+
+
+
+    <ol start="7">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"> Mục ti&ecirc;u v&agrave; kết quả dự kiến của m&ocirc;n</span></strong></li>
+    </ol>
+    @Model.Subject.Purpose
+    <p style="margin-left: .3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Kết quả dự kiến của m&ocirc;n học/Chuẩn đầu ra</span></strong></p>
+    <p style="line-height: 6.1pt;"><span style="font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.OutcomeContent))
+    <p style="line-height: 5.9pt;"><span style="font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+    <p style="margin-left: .3pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;">Ma trận t&iacute;ch hợp giữa Chuẩn đầu ra m&ocirc;n học v&agrave; Chuẩn đầu ra của Chương tr&igrave;nh đ&agrave;o tạo</span></strong></p>
+    <p style="line-height: 14.3pt;"><span style="font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.OutcomeMaxtrixMapping))
+
+
+    <ol start="8">
+        <li style="text-indent: -.3pt; line-height: 150%; tab-stops: 12.3pt; margin: 0in 295.0pt .0001pt .3pt;"><strong><span style="font-size: 11.5pt; line-height: 150%; font-family: 'Times New Roman',serif;">M&ocirc; tả vắn tắt nội dung học phần </span></strong><span style="font-size: 11.5pt; line-height: 150%; font-family: 'Times New Roman',serif;">Nội dung ch&iacute;nh của m&ocirc;n học bao gồm:</span></li>
+    </ol>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.ShortDescription))
+    <ol start="9">
+        <li style="line-height: 150%; tab-stops: 12.3pt; margin: 0in 295.0pt .0001pt .3pt;"><strong><span style="font-size: 11.5pt; line-height: 150%; font-family: 'Times New Roman',serif;">Ma trận tích hợp giữa chuẩn đầu ra môn học, hoạt động giảng dạy, phương pháp đánh giá với chuẩn đầu ra chương trình đào tạo </span></strong></li>
+    </ol>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.OutcomeMappingDescription))
+    <ol start="10">
+        <li style="text-indent: -.3pt; line-height: 143%; tab-stops: 19.0pt; margin: 0in 200.0pt .0001pt 1.0pt;"><strong><span style="font-size: 12.0pt; line-height: 143%; font-family: 'Times New Roman',serif;">Tài liệu phục vụ môn học</span></strong></li>
+    </ol>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.DocumentReference))
+    <ol start="11">
+        <li style="text-indent: -.3pt; line-height: 143%; tab-stops: 19.0pt; margin: 0in 200.0pt .0001pt 1.0pt;"><strong><span style="font-size: 12.0pt; line-height: 143%; font-family: 'Times New Roman',serif;">Phương ph&aacute;p đ&aacute;nh gi&aacute; kết quả học tập của sinh vi&ecirc;n Y&ecirc;u cầu chung</span></strong></li>
+    </ol>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.LearningOutcomeEvaluate))
+    <ol start="12">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"> Yêu cầu của môn học</span></strong></li>
+    </ol>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.Requirement))
+    <ol start="13">
+        <li style="margin-left: 1.0pt;"><strong><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif;"> Kế hoạch giảng dạy v&agrave; học tập cụ thể</span></strong></li>
+    </ol>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.Planning))
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Đề cương được cập nhật ng&agrave;y: @Model.CreationTime </span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Trưởng Khoa&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Giảng vi&ecirc;n bi&ecirc;n soạn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+    <p style="line-height: 10.0pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Vui lòng nhập tên trưởng khoa &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @(Model.Account.Degree + " " + Model.Account.FullName)</span></strong></p>

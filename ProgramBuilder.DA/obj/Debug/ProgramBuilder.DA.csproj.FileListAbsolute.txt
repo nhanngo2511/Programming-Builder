@@ -1,0 +1,12 @@
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\bin\Debug\ProgramBuilder.DA.dll.config
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\bin\Debug\ProgramBuilder.DA.dll
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\bin\Debug\ProgramBuilder.DA.pdb
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\bin\Debug\EntityFramework.dll
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\bin\Debug\EntityFramework.SqlServer.dll
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\bin\Debug\EntityFramework.xml
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\bin\Debug\EntityFramework.SqlServer.xml
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\obj\Debug\ProgramBuilder.DA.dll
+D:\Study\SEP\ProgramBuilder\ProgramBuilder.DA\obj\Debug\ProgramBuilder.DA.pdb
+D:\Study\MyProjects\SEP\ProgramBuilder\ProgramBuilder.DA\obj\Debug\ProgramBuilder.DA.csprojResolveAssemblyReference.cache
+D:\Study\MyProjects\SEP\ProgramBuilder\ProgramBuilder.DA\obj\Debug\ProgramBuilder.DA.dll
+D:\Study\MyProjects\SEP\ProgramBuilder\ProgramBuilder.DA\obj\Debug\ProgramBuilder.DA.pdb

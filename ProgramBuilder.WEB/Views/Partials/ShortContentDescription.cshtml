@@ -1,0 +1,32 @@
+﻿@model List<ProgramBuilder.WEB.Models.ShortContentDescriptionVM>
+
+@{
+    Layout = null;
+}
+
+
+@{
+    
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <h1 style="margin-left: .5in; text-align: justify; text-indent: -.25in; tab-stops: list .5in;"><span style="font-size: 13.0pt; font-family: Symbol;"><span style="font: 7.0pt 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp; </span></span><u><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">HỌC KỲ @Model[i].SemesterNumber</span></u></h1>
+        for (int j = 0; j < Model[i].Subjects.Count; j++)
+        {
+            
+            string RelateSubjects = "";
+
+            for (int z = 0; z < Model[i].Subjects[j].Subjects1.ToList().Count; z++)
+            {
+                RelateSubjects += "," + Model[i].Subjects[j].Subjects1.ToList()[z].Name;
+            }
+
+            RelateSubjects = RelateSubjects.TrimStart(new [] {','});
+            <ul>
+                <li style="margin-left: .75in; text-indent: -.25in; tab-stops: list .75in left 5.0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Tên môn học: @Model[i].Subjects[j].Name &nbsp; &nbsp;(@Model[i].Subjects[j].CreditNumber TC: @Model[i].Subjects[j].TheoryNumber LT-@Model[i].Subjects[j].PracticeNumber TH)</span></strong></li>
+            </ul>
+            <p style="margin-left: 1.0in; text-align: justify; tab-stops: 5.0in;"><strong><u><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">M&ocirc;n ti&ecirc;n quyết:</span></u></strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">@RelateSubjects</span></p>
+            <p style="margin-left: 1.0in; text-align: justify; tab-stops: 5.0in;"><strong><u><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Nội dung</span></u></strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">: @Model[i].Subjects[j].Description</span></p>
+
+        }
+    }
+}

@@ -1,0 +1,65 @@
+﻿@model ProgramBuilder.DA.Program
+@{
+
+    Layout = "~/Views/Shared/_LayoutWord.cshtml";
+    ViewBag.Title = Model.Name;
+}
+
+
+
+<p style="tab-stops: center 99.0pt 351.0pt;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-size: 10.0pt; font-family: 'Times New Roman',serif;">BỘ GIÁO DỤC VÀ ĐÀO TẠO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</span></p>
+<p style="tab-stops: center 99.0pt 351.0pt;"><span style="font-size: 10.0pt; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TRƯỜNG ĐẠI HỌC VĂN LANG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Độc lập &ndash; Tự do &ndash; Hạnh phúc</span></p>
+<p style="tab-stops: center 99.0pt 351.0pt;"><span style="font-size: 10.0pt; font-family: 'Times New Roman',serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ----------------------------&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ---------------------------</span></p>
+<p style="tab-stops: 99.25pt 170.1pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+<h2><span style="font-size: 17.0pt; font-family: 'Times New Roman',serif;">CHƯƠNG TRÌNH GIÁO DỤC ĐẠI HỌC</span></h2>
+<p><span style="font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+<p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Tên chương trình: </span></strong><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">@Model.Name</span></strong></p>
+<p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Trình độ đào tạo: @Model.TrainingLevel </span></strong></p>
+<p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Ngành đào tạo: @Model.BranchName </span></strong></p>
+<p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">Loại hình Đào tạo: @Model.EducationType</span></strong></p>
+<p style="text-align: justify;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">(Ban hành tại quyết định số        ngày          của Hiệu trưởng trường Đại học Văn Lang)</span></p>
+<p style="tab-stops: 63.0pt;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+<ol>
+    <li style="tab-stops: 99.25pt 170.1pt;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> <u>Mục tiêu đào tạo:</u></span></strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> :</span></li>
+</ol>@Html.Raw(HttpUtility.HtmlDecode(Model.TrainingPurpose))
+<ol start="2">
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> <u>Thời gian đào tạo:</u>  </span></strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">@Model.TrainingTimeDetail</span></li>
+</ol>
+<ol start="3">
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> <u>Khối lượng kiến thức toàn khoá</u> : </span></strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">@Model.KnowledgeTotal</span></li>
+</ol>
+
+<ol start="4">
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> <u>Đối tượng tuyển sinh</u>:@Model.EntranceStudent </span></strong></li>
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> <u>Quy trình đào tạo, điều kiện tốt nghiệp</u>@Model.GraduateCondition</span></strong></li>
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> <u>Thang điểm:</u></span></strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> t?i da @Model.PointLadder</span></li>
+</ol>
+<p><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"><br style="page-break-before: always;" /> </span></strong></p>
+<ol start="7">
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> <u>Nội dung chương trình:</u>:</span></strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> (Tên và khối lượng học phần):</span></li>
+</ol>
+@Html.Raw(HttpUtility.HtmlDecode(Model.Content))
+<p style="margin-left: 0in;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></p>
+<p style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+<p><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"><br style="page-break-before: always;" /> </span></strong></p>
+<ol start="8">
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> Kế hoạch giảng dạy:</span></strong></li>
+</ol>
+@Html.Raw(HttpUtility.HtmlDecode(Model.TrainingPlan))
+<p style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+<ol start="9">
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> Mô tả vắn tắt nội dung và khối lượng các học phần:</span></strong></li>
+</ol>
+@Html.Raw(HttpUtility.HtmlDecode(Model.ShortContentDescription))
+<ol start="10">
+    <li style="margin-left: 0in;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> Danh sách đội ngũ giảng viên thực hiện chương trình:</span></strong></li>
+</ol>
+<p style="text-align: justify;"><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">(danh sách giảng viên cơ hữu)</span></p>
+@Html.Raw(HttpUtility.HtmlDecode(Model.LecturerList))
+<p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+<p style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;">&nbsp;</span></strong></p>
+<ol start="11">
+    <li style="text-align: justify;"><strong><span style="font-size: 13.0pt; font-family: 'Times New Roman',serif;"> Cơ sở vật chất phục vụ học tập:</span></strong></li>
+</ol>
+@Html.Raw(HttpUtility.HtmlDecode(Model.TrainingSupport))
+

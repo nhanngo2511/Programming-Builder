@@ -1,0 +1,397 @@
+﻿@model ProgramBuilder.DA.Program
+
+@{
+    ViewBag.Title = "Chỉnh sửa thông tin chương trình đào tạo";
+    ViewBag.Header = "Chỉnh sửa thông tin chương trình đào tạo";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Name,  new { @class = "form-control input-md", @id = "programname", placeholder = "Tên CTĐT theo tên khoa" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.FacultyID)
+    </div>
+
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.FacultyID, new List<SelectListItem> { new SelectListItem() { Text = Model.Faculty.VietNameseName + " (" + Model.Faculty.EnglishName + ")", Value = Model.FacultyID.ToString() } }, new { @class = "form-control", @id = "program-name-list", @disabled = "disabled" })
+        @Html.ValidationMessageFor(model => model.FacultyID)
+    </div>
+    <br />
+    <button type="button" class="btn btn-info btnupdateinfoprogram"> Cập nhật mới thông tin chương trình đào tạo</button>
+    @*<select id="program-name-list">
+
+            <option style="display:none;" selected>--Chọn khoa--</option>
+        </select>*@
+
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TrainingLevel)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.TrainingLevel, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.TrainingLevel)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.BranchName)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.BranchName, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.BranchName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.EducationType)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.EducationType, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.EducationType)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TrainingPurpose)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.TrainingPurpose, new { placeholder = "- Về kiến thức:\n\n- Về kỹ năng, thái độ và đạo đức nghề nghiệp:\n\n- Về khả năng công tác:" })
+        @Html.ValidationMessageFor(model => model.TrainingPurpose)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TrainingTimeDetail)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.TrainingTimeDetail, new { @class = "form-control input-md trainingtime" })
+        @Html.ValidationMessageFor(model => model.TrainingTimeDetail)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.KnowledgeTotal)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.KnowledgeTotal, new { @class = "form-control input-md experience" })
+        @Html.ValidationMessageFor(model => model.KnowledgeTotal)
+    </div>
+
+
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.EntranceStudent)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.EntranceStudent, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.EntranceStudent)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.GraduateCondition)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.GraduateCondition, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.GraduateCondition)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PointLadder)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.PointLadder, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.PointLadder)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Content)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Content, new { @class = "programcontent" })
+        @Html.ValidationMessageFor(model => model.Content)
+    </div>
+
+    @*<div><label>Nội dung chương trình:</label></div>
+        <div class="programcontent"></div>*@
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TrainingPlan)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.TrainingPlan)
+        @Html.ValidationMessageFor(model => model.TrainingPlan)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ShortContentDescription)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.ShortContentDescription)
+        @Html.ValidationMessageFor(model => model.ShortContentDescription)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LecturerList)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.LecturerList)
+        @Html.ValidationMessageFor(model => model.LecturerList)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TrainingSupport)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.TrainingSupport)
+        @Html.ValidationMessageFor(model => model.TrainingSupport)
+    </div>
+
+    @Html.HiddenFor(model => model.Status, new { Value = false })
+
+    @Html.HiddenFor(model => model.FacultyID, new { @id = "facultyID" })
+
+    <br />
+    <p>
+        <input class="btn btn-success btn-block" type="submit" value="Lưu" name="action:Edit"/>
+        @*<input class="btn btn-primary" type="submit" value="Review" name="action:Review" />*@
+    </p>
+
+}
+
+<br />
+@*@using (Html.BeginForm("ReviewProgram", "Program", FormMethod.Post, new { target = "_blank" }))
+{
+
+    @Html.HiddenFor(model => model.Name, new { @id = "programname-review-form" })
+
+    @Html.HiddenFor(model => model.FacultyID, new { @id = "facultyID" })
+
+    @Html.HiddenFor(model => model.TrainingLevel, new { @id = "traininglevel-review-form" })
+
+    @Html.HiddenFor(model => model.BranchName, new { @id = "branchname-review-form" })
+
+    @Html.HiddenFor(model => model.EducationType, new { @id = "educationtype-review-form" })
+
+    @Html.HiddenFor(model => model.TrainingPurpose, new { @id = "trainingpurpose-review-form" })
+
+    @Html.HiddenFor(model => model.TrainingTimeDetail, new { @id = "trainingtimedetail-review-form" })
+
+    @Html.HiddenFor(model => model.KnowledgeTotal, new { @id = "knowledgetotal-review-form" })
+
+    @Html.HiddenFor(model => model.EntranceStudent, new { @id = "entrancestudent-review-form" })
+
+    @Html.HiddenFor(model => model.GraduateCondition, new { @id = "graduatecondition-review-form" })
+
+    @Html.HiddenFor(model => model.PointLadder, new { @id = "pointladder-review-form" })
+
+    @Html.HiddenFor(model => model.Content, new { @id = "content-review-form" })
+
+    @Html.HiddenFor(model => model.TrainingPlan, new { @id = "trainingplan-review-form" })
+
+    @Html.HiddenFor(model => model.ShortContentDescription, new { @id = "shortcontentdescription-review-form" })
+
+    @Html.HiddenFor(model => model.LecturerList, new { @id = "lecturerlist-review-form" })
+
+    @Html.HiddenFor(model => model.TrainingSupport, new { @id = "trainingsupport-review-form" })
+
+    @Html.HiddenFor(model => model.Status, new { Value = false })
+
+
+
+    <p>
+        <input class="btn btn-primary " type="submit" value="Review" id="btnReview" />
+    </p>
+}*@
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/tinymce/tinymce.js"></script>
+    <script src="~/Scripts/tinymce/inittinymce.js"></script>
+}
+
+<script>
+
+    //  GetFaculties();
+
+    $(".btnupdateinfoprogram").bind("click", function () {
+        var programname = $("#program-name-list option:selected").text();
+        $("#programname").val(programname);
+      //  $('#programname-review-form').val(programname);
+
+        var facultyID = $("#program-name-list option:selected").val();
+
+        GetFacultyByID(facultyID);
+
+        GetProgramContent(facultyID);
+
+        GetTrainingPlanByFacultyID(facultyID);
+
+        GetShortContentDescriptionByFacultyID(facultyID);
+
+        GetLectureList(facultyID);
+
+    });
+
+    //TranfromDataFromCreateFormToReviewForm
+
+    //$("#btnReview").click(function () {
+
+    //    var programnamedata = $('#programname').val();
+    //    $('#programname-review-form').val(programnamedata);
+
+    //    var trainingleveldata = $('#TrainingLevel').val();
+    //    $('#traininglevel-review-form').val(trainingleveldata);
+
+    //    var BranchNameData = $('#BranchName').val();
+    //    $('#branchname-review-form').val(BranchNameData);
+
+    //    var EducationTypeData = $('#EducationType').val();
+    //    $('#educationtype-review-form').val(EducationTypeData);
+
+    //    var TrainingPurposeData = tinyMCE.get('TrainingPurpose').getContent();
+    //    $('#trainingpurpose-review-form').val(TrainingPurposeData);
+
+    //    var TrainingTimeDetail = $('#TrainingTimeDetail').val();
+    //    $('#trainingtimedetail-review-form').val(TrainingTimeDetail);
+
+    //    var KnowledgeTotal = $('#KnowledgeTotal').val();
+    //    $('#knowledgetotal-review-form').val(KnowledgeTotal);
+
+    //    var EntranceStudentData = $('#EntranceStudent').val();
+    //    $('#entrancestudent-review-form').val(EducationTypeData);
+
+    //    var GraduateConditionData = $('#GraduateCondition').val();
+    //    $('#graduatecondition-review-form').val(GraduateConditionData);
+
+    //    var PointLadderData = $('#PointLadder').val();
+    //    $('#pointladder-review-form').val(PointLadderData);
+
+    //    var ContentData = tinyMCE.get('Content').getContent();
+    //    $('#content-review-form').val(ContentData);
+
+    //    var TrainingPlanData = tinyMCE.get('TrainingPlan').getContent();
+    //    $('#trainingplan-review-form').val(TrainingPlanData);
+
+    //    var ShortContentDescriptionData = tinyMCE.get('ShortContentDescription').getContent();
+    //    $('#shortcontentdescription-review-form').val(ShortContentDescriptionData);
+
+    //    var LecturerListData = tinyMCE.get('LecturerList').getContent();
+    //    $('#lecturerlist-review-form').val(LecturerListData);
+
+    //    var TrainingSupportData = tinyMCE.get('TrainingSupport').getContent();
+    //    $('#trainingsupport-review-form').val(ShortContentDescriptionData);
+
+    //});
+
+
+
+
+    function SetHiddenFacultyID(ID) {
+        $('#facultyID').val(ID);
+    }
+
+    function GetFacultyByID(facultyID) {
+        $.ajax({
+            type: 'GET',
+            url: '/Faculty/GetFacultyByID/' + facultyID,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Faculty) {
+                SetTrainingTimeAndExperienceAndCreditNumber(Faculty);
+                SetHiddenFacultyID(Faculty.ID);
+            },
+            error: function () {
+                alert('Có 1 số vấn đề về kết nối với server, vui lòng chọn lại khoa hoặc reload lại page.');
+            }
+        });
+    }
+
+    function SetTrainingTimeAndExperienceAndCreditNumber(Faculty) {
+        var semester = Faculty.TrainingTime * 2;
+        $('.trainingtime').val(Faculty.TrainingTime + " năm (gồm " + semester + " học kỳ)");
+
+        $('.experience').val("Đại học " + Faculty.TrainingTime + " năm: " + Faculty.CreditNumber + " tín chỉ (TC)");
+    }
+
+
+    function GetProgramContent(ID) {
+        $.ajax({
+            type: 'GET',
+            url: '/Subject/GetProgramContentByFacultyID/' + ID,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Result) {
+                tinyMCE.get('Content').setContent('');
+                tinyMCE.get('Content').setContent(Result.HtmlResult);
+
+                GetTrainingPlanByFacultyID(ID);
+            },
+            error: function () {
+                alert('Có 1 số vấn đề về kết nối với server, vui lòng chọn lại khoa hoặc reload lại page.');
+            }
+        });
+    }
+
+    function GetShortContentDescriptionByFacultyID(ID) {
+        $.ajax({
+            type: 'GET',
+            url: '/Program/GetShortContentDescriptionByFacultyID/' + ID,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Result) {
+                tinyMCE.get('ShortContentDescription').setContent('');
+                tinyMCE.get('ShortContentDescription').setContent(Result.HtmlResult);
+
+                GetTrainingPlanByFacultyID(ID);
+            },
+            error: function () {
+                alert('Có 1 số vấn đề về kết nối với server, vui lòng chọn lại khoa hoặc reload lại page.');
+            }
+        });
+    }
+
+
+
+    function GetTrainingPlanByFacultyID(ID) {
+        $.ajax({
+            type: 'GET',
+            url: '/Program/GetTrainingPlanByFacultyID/' + ID,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Result) {
+                tinyMCE.get('TrainingPlan').setContent('');
+                tinyMCE.get('TrainingPlan').setContent(Result.HtmlResult);
+            },
+            error: function () {
+                alert('Có 1 số vấn đề về kết nối với server, vui lòng chọn lại khoa hoặc reload lại page.');
+            }
+        });
+    }
+
+    function GetLectureList(ID) {
+        $.ajax({
+            type: 'GET',
+            url: '/Account/GetAccountTeachSubjectByFacultyID/' + ID,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Result) {
+                tinyMCE.get('LecturerList').setContent('');
+                tinyMCE.get('LecturerList').setContent(Result.HtmlResult);
+            },
+            error: function () {
+                alert('Có 1 số vấn đề về kết nối với server, vui lòng chọn lại khoa hoặc reload lại page.');
+            }
+        });
+    }
+
+
+
+</script>

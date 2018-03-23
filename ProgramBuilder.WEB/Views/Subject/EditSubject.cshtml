@@ -1,0 +1,310 @@
+﻿@model ProgramBuilder.DA.Subject
+
+@{
+    ViewBag.Title = "Chỉnh sửa thông tin môn học";
+    ViewBag.Header = "Chỉnh sửa thông tin môn học";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+     <div class="editor-field">
+        @Html.HiddenFor(model => model.ID)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PartialCode, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.PartialCode, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.PartialCode)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.CreditNumber, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.CreditNumber, new { @class = "form-control bfh-number" })
+        @Html.ValidationMessageFor(model => model.CreditNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TheoryNumber, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.TheoryNumber, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.TheoryNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PracticeNumber, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.PracticeNumber, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.PracticeNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LearningLevel, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.LearningLevel, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.LearningLevel)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.SemesterNumber, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.SemesterNumber, new { @class = "form-control input-md" })
+        @Html.ValidationMessageFor(model => model.SemesterNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Purpose, new { @class = "control-label" })
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Purpose, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Purpose)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.SubjectTypeID, new { @class = "control-label" })
+    </div>
+    <div class="control-group">
+        <select class="modify form-control" id="subjecttypes-list" name="SubjectTypeID">
+            <option class="sele" style="display:none;" selected value="">--- Chọn loại môn học ---</option>
+        </select>
+
+        <select class="modify form-control" style="display:none;" id="sub-subjecttypes-list"></select>
+
+        <select class="modify form-control" id="subtwo-subjecttypes-list" style="display:none;"></select>
+
+        @Html.ValidationMessageFor(model => model.SubjectTypeID)
+    </div>
+
+    <div class="editor-label">
+        @Html.CheckBoxFor(model => model.Form)
+        @Html.LabelFor(model => model.Form, new { @class = "control-label checkbox-inline" })
+        @Html.ValidationMessageFor(model => model.Form)
+    </div>
+
+
+    <div class="editor-label">
+        <label class="control-label">Điều kiện tiên quyết:</label>
+    </div>
+
+    @*<select id="subjectscondition-list" multiple="multiple" name="subjectConditionIDs"></select>*@
+
+    @Html.ListBox("subjectConditionIDs", (SelectList)ViewBag.Subjects, new { @id = "subjectscondition-list" })
+
+    <div class="editor-label">
+        <label class="control-label">Thuộc khoa:</label>
+    </div>
+
+    @*<select id="faculties-list" multiple="multiple" name="facultyIDs"></select>*@
+
+    @Html.DropDownListFor(x => x.FacultyID, (SelectList)ViewBag.Faculties, new { @class = "modify form-control" })
+    @Html.ValidationMessage("subjectConditionIDs")
+
+    <div class="editor-label">
+        <label class="control-label">Giảng viên đảm nhiệm dạy:</label>
+    </div>
+    <div class="editor-field">
+        @Html.ListBox("AccountIDs", (SelectList)ViewBag.Accounts, new { @id = "accounts-list" })
+        @Html.ValidationMessage("AccountIDsMessage")
+    </div>
+
+    <div class="editor-label">
+        <label class="control-label">Giảng viên đảm nhiệm soạn đề cương môn học:</label>
+    </div>
+    <div>
+        @Html.DropDownList("AccountIDs", (SelectList)ViewBag.Accounts, new { @class = "modify form-control" })
+        @Html.ValidationMessage("AccountIDsMessage")
+    </div>
+    <br />
+
+    <p>
+        <input class="btn btn-primary btn-block" type="submit" value="Lưu" />
+    </p>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @*<script src="~/Scripts/tinymce/tinymce.js"></script>
+        <script src="~/Scripts/tinymce/inittinymce.js"></script>*@
+}
+
+<script>
+
+    GetMainSubjectTypes();
+
+    $('#accounts-list').select2({
+        placeholder: "Giảng viên đảm nhiệm",
+        maximumSelectionSize: 500,
+        width: 500
+    });
+
+    $('#subjectscondition-list').select2({
+        placeholder: "Chọn môn học tiên quyết",
+        maximumSelectionSize: 500,
+        width: 500
+    });
+
+    $('#subjecttypes-list').bind("change", function () {
+
+        var subjecttypeID = $("#subjecttypes-list option:selected").val();
+
+        GetSubSubjectTypes(subjecttypeID);
+    });
+
+    $('#sub-subjecttypes-list').bind("change", function () {
+
+        var subjecttypeID = $("#sub-subjecttypes-list option:selected").val();
+
+        GetSubTwoSubjectTypes(subjecttypeID);
+    });
+
+    function GetMainSubjectTypes() {
+        $.ajax({
+            type: 'GET',
+            url: '/Subject/GetMainSubjectTypes/',
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (SubjectTypes) {
+
+                $.each(SubjectTypes, function (i, SubjectType) {
+
+                    $('#subjecttypes-list').append(new Option(SubjectType.Name, SubjectType.ID));
+                });
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+
+    function GetSubSubjectTypes(ID) {
+        $.ajax({
+            type: 'GET',
+            url: '/Subject/GetSubSubjectTypes/' + ID,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (SubjectTypes) {
+
+                $('#subjecttypes-list').removeAttr("name");
+
+                $('#sub-subjecttypes-list').empty();
+
+
+                $.each(SubjectTypes, function (i, SubjectType) {
+                    $('#sub-subjecttypes-list').append(new Option(SubjectType.Name, SubjectType.ID));
+                });
+
+                $('#sub-subjecttypes-list').show();
+
+                $('#sub-subjecttypes-list').attr("name", "SubjectTypeID");
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+
+    function GetSubTwoSubjectTypes(ID) {
+        $.ajax({
+            type: 'GET',
+            url: '/Subject/GetSubTwoSubjectTypes/' + ID,
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (SubjectTypes) {
+
+                if (SubjectTypes.length > 0) {
+                    $('#subtwo-subjecttypes-list').empty();
+
+                    $.each(SubjectTypes, function (i, SubjectType) {
+                        $('#subtwo-subjecttypes-list').append(new Option(SubjectType.Name, SubjectType.ID));
+                    });
+
+                    $('#subtwo-subjecttypes-list').show();
+                    $('#subtwo-subjecttypes-list').attr("name", "SubjectTypeID");
+
+                    $('#sub-subjecttypes-list').removeAttr("name");
+                }
+                else {
+
+                    $('#sub-subjecttypes-list').attr("name", "SubjectTypeID");
+
+                    $('#subtwo-subjecttypes-list').hide();
+                }
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+
+    function GetFaculties() {
+        $.ajax({
+            type: 'GET',
+            url: '/Faculty/GetFaculties/',
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Faculties) {
+
+                $.each(Faculties, function (i, Faculty) {
+                    $('#faculties-list').append(new Option(Faculty.VietNameseName + ' (' + Faculty.EnglishName + ')', Faculty.ID));
+                });
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+
+
+    function GetAccounts() {
+        $.ajax({
+            type: 'GET',
+            url: '/Account/GetAccounts/',
+            contentType: "aplication/json; charset=utf8",
+            dataType: 'json',
+            success: function (Accounts) {
+
+                $.each(Accounts, function (i, Account) {
+
+                    $('#accounts-list').append(new Option(Account.FullName + ' (' + Account.Faculty.VietnameseName + ')', Account.ID));
+                });
+
+            },
+            error: function () {
+                alert('error');
+            }
+        });
+    }
+
+</script>

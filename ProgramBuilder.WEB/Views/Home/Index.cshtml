@@ -1,0 +1,12 @@
+﻿@using ProgramBuilder.WEB.Principal;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    string Fullname = (User as AuthorizePrincipal).FullName;
+}
+
+ <h1>Xin chào @Fullname</h1>
+
